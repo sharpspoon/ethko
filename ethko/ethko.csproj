@@ -276,10 +276,13 @@
     <Content Include="Content\img\expense2.png" />
     <Content Include="Content\img\invoice.png" />
     <Content Include="Content\img\invoice2.png" />
+    <Content Include="Content\img\login_banner.jpg" />
     <Content Include="Content\img\message.png" />
     <Content Include="Content\img\message2.png" />
     <Content Include="Content\img\note.png" />
     <Content Include="Content\img\note2.png" />
+    <Content Include="Content\img\register_banner.jpg" />
+    <Content Include="Content\img\SAP_R_grad.png" />
     <Content Include="Content\img\task.png" />
     <Content Include="Content\img\task2.png" />
     <Content Include="Content\img\time.png" />
