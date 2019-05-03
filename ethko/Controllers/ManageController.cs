@@ -20,11 +20,6 @@ namespace ethko.Controllers
         {
         }
 
-        public ActionResult addContact()
-        {
-            return View();
-        }
-
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

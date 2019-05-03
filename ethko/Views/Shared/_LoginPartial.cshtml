@@ -1,16 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Contacts", "AddContact", "Contacts", new { area = "" }, null)</li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Home <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink("Item 1", "Index", "Home", null, new { id = "item 1" })</li>
+                <li>@Html.ActionLink("Item 2", "Index", "Home", null, new { id = "item 2" })</li>
+                <li>@Html.ActionLink("Item 3", "Index", "Home", null, new { id = "item 3" })</li>
+            </ul>
+        </li>
+    </ul>
+
+
     using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
-    </li>
-    <li><a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">Log off</a></li>
-</ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">Log off</a></li>
+        </ul>
     }
 }
 else
@@ -20,3 +33,9 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(".dropdown").hover(function () {
+            $(this).toggleClass("open");
+        });
+    </script>
