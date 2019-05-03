@@ -1,30 +1,100 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Contacts", "AddContact", "Contacts", new { area = "" }, null)</li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Home <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Item 1", "Index", "Home", null, new { id = "item 1" })</li>
-                <li>@Html.ActionLink("Item 2", "Index", "Home", null, new { id = "item 2" })</li>
-                <li>@Html.ActionLink("Item 3", "Index", "Home", null, new { id = "item 3" })</li>
-            </ul>
-        </li>
-    </ul>
-
-
-    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">Log off</a></li>
+<ul class="nav navbar-nav">
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Calendar <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Day", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Week", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Month", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Agenda", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Locations", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Calendar Sync", "AddContact", "Contacts", new { area = "" }, null)</li>
         </ul>
-    }
+    </li>
+    <li>@Html.ActionLink("Tasks", "AddContact", "Contacts", new { area = "" }, null)</li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Contacts <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Clients", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Companies", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Contact Groups", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Cases <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("My Open Cases", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("My Closed Cases", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Open Cases", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Closed Cases", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Practice Areas", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Case Insights", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Documents <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Case Documents", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Unread Case Documents", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Documents", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Templates", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Billing <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Time Entries", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Expenses", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Requested Funds", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Invoices", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Saved Activities", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Account Activity", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Trust Accounting", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Financial Insights", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Reporting <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("My Time & Expenses Today", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("My Time & Expenses This Week", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("My Time & Expenses This Month", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Time & Expenses Today", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Time & Expenses This Week", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Firm Time & Expenses This Month", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Aging Invoices", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Accounts Receivable", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Saved Reports", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("More Reports", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Messages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Inbox", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Unread", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Sent", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Drafts", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Archived", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Comments <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("All", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Unread", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Leads <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Dashboard", "AddContact", "Contacts", new { area = "" }, null)</li>
+            <li>@Html.ActionLink("Leads Insights", "AddContact", "Contacts", new { area = "" }, null)</li>
+        </ul>
+    </li>
+</ul>
 }
 else
 {

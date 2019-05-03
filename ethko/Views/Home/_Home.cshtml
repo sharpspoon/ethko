@@ -113,8 +113,9 @@
 </style>
 
 <div class="jumbotron">
-    <h1>ethko</h1>
+    <h1>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })</h1>
     <p class="lead">ethko is a free web application for lawyers.</p>
+    @Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)
     <p data-bind="text: myHometown"></p>
 </div>
 <div class="row">
