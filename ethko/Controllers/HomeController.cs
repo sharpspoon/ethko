@@ -12,5 +12,18 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Index(Contact contact)
+        {
+            using (Entities entities = new Entities())
+            {
+                entities.Contacts.Add(contact);
+                entities.SaveChanges();
+                int id = contact.ContactId;
+
+            }
+            return View(contact);
+        }
     }
 }
