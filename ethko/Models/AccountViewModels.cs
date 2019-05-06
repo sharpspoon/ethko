@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ethko.Models
 {
@@ -127,6 +128,12 @@ namespace ethko.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LName { get; set; }
+
+        [Key]
+        [ForeignKey("UserId")]
+        public string AspNetUsersId { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+
 
         [EmailAddress]
         [Display(Name = "Email")]

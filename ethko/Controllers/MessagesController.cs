@@ -6,9 +6,9 @@ using System.Web.Mvc;
 namespace ethko.Controllers
 {
     [Authorize]
-    public class ContactsController : Controller
+    public class MessagesController : Controller
     {
-        public ActionResult Contacts()
+        public ActionResult Messages()
         {
             return View();
         }
