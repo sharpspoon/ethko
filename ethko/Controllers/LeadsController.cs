@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class LeadsController : Controller
     {
-        public ActionResult Leads()
+        public ActionResult Index()
         {
             return View();
         }

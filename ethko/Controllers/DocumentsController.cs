@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class DocumentsController : Controller
     {
-        public ActionResult Documents()
+        public ActionResult Index()
         {
             return View();
         }

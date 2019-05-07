@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class TasksController : Controller
     {
-        public ActionResult Tasks()
+        public ActionResult Index()
         {
             return View();
         }

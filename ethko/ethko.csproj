@@ -432,15 +432,15 @@
     </Content>
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Cases\Index.cshtml" />
-    <Content Include="Views\Calendar\Contacts.cshtml" />
-    <Content Include="Views\Tasks\Contacts.cshtml" />
-    <Content Include="Views\Documents\Contacts.cshtml" />
-    <Content Include="Views\Billing\Contacts.cshtml" />
-    <Content Include="Views\Reporting\Contacts.cshtml" />
-    <Content Include="Views\Messages\Contacts.cshtml" />
-    <Content Include="Views\Comments\Contacts.cshtml" />
-    <Content Include="Views\Leads\Contacts.cshtml" />
-    <None Include="Views\Contacts\Contacts.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Billing\Index.cshtml" />
+    <Content Include="Views\Reporting\Index.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Leads\Index.cshtml" />
+    <None Include="Views\Contacts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class ReportingController : Controller
     {
-        public ActionResult Reporting()
+        public ActionResult Index()
         {
             return View();
         }

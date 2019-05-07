@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class BillingController : Controller
     {
-        public ActionResult Billing()
+        public ActionResult Index()
         {
             return View();
         }

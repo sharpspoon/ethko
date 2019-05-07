@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class ContactsController : Controller
     {
-        public ActionResult Contacts()
+        public ActionResult Index()
         {
             return View();
         }

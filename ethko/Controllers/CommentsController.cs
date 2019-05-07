@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class CommentsController : Controller
     {
-        public ActionResult Comments()
+        public ActionResult Index()
         {
             return View();
         }

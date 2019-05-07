@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class MessagesController : Controller
     {
-        public ActionResult Messages()
+        public ActionResult Index()
         {
             return View();
         }

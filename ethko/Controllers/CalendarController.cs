@@ -8,7 +8,7 @@ namespace ethko.Controllers
     [Authorize]
     public class CalendarController : Controller
     {
-        public ActionResult Calendar()
+        public ActionResult Index()
         {
             return View();
         }
