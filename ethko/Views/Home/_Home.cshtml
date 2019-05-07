@@ -151,7 +151,7 @@
     <a class="btn btn-default" href="#"><img src="../content/img/283592_Tax_Changes_Dollar_R_purple.png" id="Expense">  <br />Add Expense</a>&nbsp;
     <a class="btn btn-default" href="#"><img src="../content/img/283598_Tax_Payer_Dollar_R_purple.png" id="Invoice">  <br />Add Invoice</a>&nbsp;
     <a class="btn btn-default" href="#contact" rel="modal:open"><img src="../content/img/281259_UXPerson_R_purple.png" id="Contact">  <br />Add Contact</a>&nbsp;
-    <a class="btn btn-default" href='@Url.Action("AddContact", "Contacts")'><img src="../content/img/281283_Briefcase_R_purple.png" id="Case">  <br />Add Case</a>&nbsp;
+    <a class="btn btn-default" href='@Url.Action("Index", "Cases")'><img src="../content/img/281283_Briefcase_R_purple.png" id="Case">  <br />Add Case</a>&nbsp;
     <a class="btn btn-default" href="#"><img src="../content/img/281022_Mail_R_purple.png" id="Message">  <br />New Message</a>&nbsp;
     <a class="btn btn-default" href="#"><img src="../content/img/281224_Clock_R_purple.png" id="Time">  <br />Add Time Entry</a>&nbsp;
     <a class="btn btn-default" href="#"><img src="../content/img/281495_SpiralboundNotebook_R_purple.png" id="Note">  <br />Add Note</a>
@@ -166,7 +166,7 @@
         <a class="btn btn-default" href="#individual" rel="modal:open"><img src="../content/img/281122_PersonFemale_R_purple.png" id="Person">  <br />Individual</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="btn btn-default" href="#company" rel="modal:open"><img src="../content/img/281072_Building_R_purple.png" id="Company">  <br />Company</a>
     </center>
-    <a href="#" rel="modal:close">Close</a>
+    <a class="btn btn-default" href="#" rel="modal:close">Cancel</a>
 </div>
 
 <div id="individual" class="modal">
@@ -199,7 +199,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" class="btn btn-default" value="Cancel" />
+                            <a class="btn btn-default" href="#" rel="modal:close">Cancel</a>
                             <input type="submit" class="btn btn-default" value="Save Contact" />
                         </div>
                     </div>
@@ -207,7 +207,6 @@
             </div>
         </p>
     </center>
-    <a href="#" rel="modal:close">Close</a>
 </div>
 
 <div id="company" class="modal">

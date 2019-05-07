@@ -141,4 +141,12 @@ namespace ethko.Models
 
 
     }
+
+    public class ContactIndividualViewModel
+    {
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string Number { get; set; }
+    }
 }
