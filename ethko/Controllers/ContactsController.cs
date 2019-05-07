@@ -12,5 +12,25 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public ActionResult Companies()
+        {
+            return View();
+        }
+
+        public ActionResult ContactGroups()
+        {
+            return View();
+        }
+
+        public ActionResult CompaniesArchive()
+        {
+            return View();
+        }
+
+        public ActionResult ContactsArchive()
+        {
+            return View();
+        }
     }
 }

@@ -1,16 +1,16 @@
 ﻿@model ethko.Models.ContactIndividualViewModel
 @{
-    ViewBag.Title = "Active Contacts";
+    ViewBag.Title = "Archived Contacts";
 }
 
 <br />
-<a class="btn btn-primary" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("ContactsArchive", "Contacts")'>Contacts</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("CompaniesArchive", "Contacts")'>Companies</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
 <br />
 <br />
-<a class="btn btn-primary" href='@Url.Action("Index", "Contacts")'>Active</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")'>Archived</a>
+<a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Active</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("ContactsArchive", "Contacts")'>Archived</a>
 <h2>
     @ViewBag.Title
 

@@ -1,16 +1,16 @@
 ﻿@model ethko.Models.ContactIndividualViewModel
 @{
-    ViewBag.Title = "Active Contacts";
+    ViewBag.Title = "Archived Companies";
 }
 
 <br />
-<a class="btn btn-primary" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")'>Contacts</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("CompaniesArchive", "Contacts")'>Companies</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
 <br />
 <br />
-<a class="btn btn-primary" href='@Url.Action("Index", "Contacts")'>Active</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")'>Archived</a>
+<a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Active</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("CompaniesArchive", "Contacts")'>Archived</a>
 <h2>
     @ViewBag.Title
 
@@ -37,11 +37,9 @@
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Group</th>
+                        <th>Name</th>
                         <th>Cases</th>
-                        <th>Last Login</th>
+                        <th>Contacts</th>
                         <th>Added</th>
                     </tr>
                 </thead>
@@ -51,24 +49,18 @@
                         <td>Anusha</td>
                         <td>India</td>
                         <td>10000</td>
-                        <td>India</td>
-                        <td>10000</td>
                     </tr>
                     <tr>
                         <td>002</td>
                         <td>Charles</td>
                         <td>United Kingdom</td>
                         <td>28000</td>
-                        <td>India</td>
-                        <td>10000</td>
                     </tr>
                     <tr>
                         <td>003</td>
                         <td>Sravani</td>
                         <td>Australia</td>
                         <td>7000</td>
-                        <td>India</td>
-                        <td>10000</td>
                     </tr>
                 </tbody>
             </table>

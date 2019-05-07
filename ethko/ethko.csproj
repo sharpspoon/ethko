@@ -440,6 +440,10 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Leads\Index.cshtml" />
+    <Content Include="Views\Contacts\Companies.cshtml" />
+    <Content Include="Views\Contacts\ContactGroups.cshtml" />
+    <Content Include="Views\Contacts\CompaniesArchive.cshtml" />
+    <Content Include="Views\Contacts\ContactsArchive.cshtml" />
     <None Include="Views\Contacts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
