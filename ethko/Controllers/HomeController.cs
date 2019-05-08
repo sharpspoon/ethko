@@ -15,14 +15,27 @@ namespace ethko.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(Contact model)
+        public Contact ConvertViewModelToModel(AddContactIndividualViewModel vm)
         {
+            return new Contact()
+            {
+                FName = vm.FName,
+                LName = vm.LName,
+                UserId = vm.UserId,
+                Email = vm.Email
+            };
+        }
+
+        [HttpPost]
+        public ActionResult Index(AddContactIndividualViewModel model)
+        {
+            var contactModel = ConvertViewModelToModel(model);
+
             using (Entities entities = new Entities())
             {
-                entities.Contacts.Add(model);
+                entities.Contacts.Add(contactModel);
                 var user = User.Identity.GetUserName().ToString();
-                model.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
 
             }
