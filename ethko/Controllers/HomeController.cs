@@ -22,9 +22,7 @@ namespace ethko.Controllers
                 entities.Contacts.Add(contact);
                 var user = User.Identity.GetUserName().ToString();
                 contact.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
-                contact.ContactId = 1;
                 entities.SaveChanges();
-                int id = contact.ContactId;
 
             }
             return View(contact);
