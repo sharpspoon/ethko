@@ -16,17 +16,17 @@ namespace ethko.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Contact contact)
+        public ActionResult Index(Contact model)
         {
             using (Entities entities = new Entities())
             {
-                entities.Contacts.Add(contact);
+                entities.Contacts.Add(model);
                 var user = User.Identity.GetUserName().ToString();
-                contact.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                model.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
 
             }
-            return View(contact);
+            return View(model);
         }
     }
 }
