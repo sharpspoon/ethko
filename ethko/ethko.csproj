@@ -444,6 +444,7 @@
     <Content Include="Views\Contacts\ContactGroups.cshtml" />
     <Content Include="Views\Contacts\CompaniesArchive.cshtml" />
     <Content Include="Views\Contacts\ContactsArchive.cshtml" />
+    <Content Include="Views\Contacts\_AddContact.cshtml" />
     <None Include="Views\Contacts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

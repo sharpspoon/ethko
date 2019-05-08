@@ -129,10 +129,11 @@ namespace ethko.Models
         [Display(Name = "Last Name")]
         public string LName { get; set; }
 
-        [Key]
-        [ForeignKey("UserId")]
-        public string AspNetUsersId { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
+
+
+        [Required]
+        [Display(Name = "UserId")]
+        public string UserId { get; set; }
 
 
         [EmailAddress]
