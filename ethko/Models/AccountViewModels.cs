@@ -143,27 +143,11 @@ namespace ethko.Models
 
     }
 
-    public class GetContactIndividualViewModel
+    public class ContactIndividualViewModel
     {
         [Required]
-        [Display(Name = "First Name")]
-        public string FName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LName { get; set; }
-
-
-
-        [Required]
-        [Display(Name = "UserId")]
-        public string UserId { get; set; }
-
-
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string Number { get; set; }
     }
 }
