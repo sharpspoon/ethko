@@ -10,10 +10,26 @@ namespace ethko.Controllers
     [Authorize]
     public class ContactsController : Controller
     {
-        private Entities db = new Entities();
-        public ActionResult Index()
+        private readonly Entities db = new Entities();
+
+        public Contact ConvertViewModelToModel(GetContactIndividualViewModel vm)
         {
-            return View();
+            return new Contact()
+            {
+                FName = vm.FName,
+                LName = vm.LName,
+                UserId = vm.UserId,
+                Email = vm.Email
+            };
+        }
+
+        
+
+        [HttpGet]
+        public ActionResult Index(GetContactIndividualViewModel model)
+        {
+            var contactModel = ConvertViewModelToModel(model);
+            return View(model);
         }
 
         public ActionResult Companies()
@@ -36,9 +52,9 @@ namespace ethko.Controllers
             return View();
         }
 
-        public ActionResult GetContactIndividualViewModel()
-        {
-            return View(db.Contacts.ToList());
-        }
+        //public ActionResult GetContactIndividualViewModel()
+        //{
+        //    return View();
+        //}
     }
 }
