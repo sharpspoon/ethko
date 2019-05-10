@@ -23,13 +23,14 @@ namespace ethko.Controllers
             };
         }
 
-        
-
         [HttpGet]
-        public ActionResult Index(GetContactIndividualViewModel model)
+        public ActionResult Index()
         {
-            var contactModel = ConvertViewModelToModel(model);
-            return View(model);
+            
+            Entities entities = new Entities();
+            IEnumerable<Contact> contacts = entities.Contacts.ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(contacts.AsEnumerable());
         }
 
         public ActionResult Companies()

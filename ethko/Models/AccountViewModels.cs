@@ -143,6 +143,7 @@ namespace ethko.Models
 
     }
 
+    [Table("Contacts")]
     public class GetContactIndividualViewModel
     {
         [Display(Name = "First Name")]
