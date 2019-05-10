@@ -53,9 +53,9 @@ namespace ethko.Controllers
             return View();
         }
 
-        //public ActionResult GetContactIndividualViewModel()
-        //{
-        //    return View();
-        //}
+        public ActionResult ViewContact()
+        {
+            return View();
+        }
     }
 }

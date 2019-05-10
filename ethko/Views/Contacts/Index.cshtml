@@ -53,19 +53,23 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FName)
+                                    <a href='@Url.Action("ViewContact", "Contacts")'>@Html.DisplayFor(modelItem => item.FName)</a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.LName)
+                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.LName)</a>
+                                    
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
+                                    
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UserId)
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.UserId)</a>
+                                    
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.InsDate)
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.InsDate)</a>
+                                    
                                 </td>
                             </tr>
                         }
