@@ -1,20 +1,17 @@
 ﻿@model ethko.Models.ContactIndividualViewModel
 @{
-    ViewBag.Title = "Archived Contacts";
+    ViewBag.Title = "Contact Details";
 }
 
 <br />
-<a class="btn btn-primary" href='@Url.Action("ContactsArchive", "Contacts")'>Contacts</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")'>Contacts</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("CompaniesArchive", "Contacts")'>Companies</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("ViewContact", "Contacts")'>Contact Details</a>&nbsp;
 <br />
 <br />
-<a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Active</a>&nbsp;
-<a class="btn btn-primary" href='@Url.Action("ContactsArchive", "Contacts")'>Archived</a>
 <h2>
     @ViewBag.Title
-    <a class="btn btn-primary" href="#contact" rel="modal:open" style="float: right">Add Contact</a>
-    <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")' style="float: right">Import Contacts</a>
 </h2>
 
 
@@ -33,46 +30,74 @@
 
     </head>
     <body style="margin:20px auto">
+        <div class="col-md-2">
+            <div class="well">
+                <a class="btn btn-danger" href='@Url.Action("ViewContact", "Contacts")'>Archive Contact</a>
+                <br />
+                <br />
+                <a class="btn btn-danger" href='@Url.Action("ViewContact", "Contacts")'>Delete Contact</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="tabbable">
+                <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+                    <li><a href="#cases" data-toggle="tab">Cases</a></li>
+                    <li><a href="#activity" data-toggle="tab">Activity</a></li>
+                    <li><a href="#notes" data-toggle="tab">Notes</a></li>
+                    <li><a href="#billing" data-toggle="tab">Billing</a></li>
+                    <li><a href="#messages" data-toggle="tab">Messages</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="info">
+                        <div class="col-md-8">
+                            <br />
+                            <div class="well">
+                                <h4>Contact Information</h4>
+                                asdf
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <br />
+                            <div class="well">
+                                <h4>Contact Information</h4>
+                                asdf
+                            </div>
+                        </div>
+                    </div>
+                        <div class="tab-pane" id="cases">
+                            <div class="well">
+                                <p>Howdy, I'm in Section 2.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="activity">
+                            <div class="well">
+                                <p>Howdy, I'm in Section 2.</p>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane" id="notes">
+                            <div class="well">
+                                <p>Howdy, I'm in Section 2.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="billing">
+                            <div class="well">
+                                <p>Howdy, I'm in Section 2.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            <div class="well">
+                                <p>Howdy, I'm in Section 2.</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
         <div class="container">
             <br />
-            <table id="myTable" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Group</th>
-                        <th>Cases</th>
-                        <th>Last Login</th>
-                        <th>Added</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Anusha</td>
-                        <td>India</td>
-                        <td>10000</td>
-                        <td>India</td>
-                        <td>10000</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Charles</td>
-                        <td>United Kingdom</td>
-                        <td>28000</td>
-                        <td>India</td>
-                        <td>10000</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Sravani</td>
-                        <td>Australia</td>
-                        <td>7000</td>
-                        <td>India</td>
-                        <td>10000</td>
-                    </tr>
-                </tbody>
-            </table>
+
         </div>
     </body>
 
