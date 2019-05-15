@@ -13,7 +13,7 @@
 <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")'>Archived</a>
 <h2>
     @ViewBag.Title
-    <a class="btn btn-primary" href="#contact" rel="modal:open" style="float: right">Add Contact</a>
+    <a class="btn btn-primary" href="#individual" rel="modal:open" style="float: right">Add Contact</a>
     <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")' style="float: right">Import Contacts</a>
 </h2>
 
@@ -57,40 +57,42 @@
                                 </td>
                                 <td>
                                     <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.LName)</a>
-                                    
+
                                 </td>
                                 <td>
                                     <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
-                                    
+
                                 </td>
                                 <td>
                                     <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.UserId)</a>
-                                    
+
                                 </td>
                                 <td>
                                     <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.InsDate)</a>
-                                    
+
                                 </td>
                             </tr>
                         }
                     }
                     @if (Model == null)
                     {
-                            <tr>
-                                <td>
-                                    you
-                                </td>
-                                <td>
-                                    really
-                                </td>
-                                <td>
-                                   really
-                                </td>
-                                <td>
-suck                                </td>
-                                <td>
-ass                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                you
+                            </td>
+                            <td>
+                                really
+                            </td>
+                            <td>
+                                really
+                            </td>
+                            <td>
+                                suck
+                            </td>
+                            <td>
+                                ass
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
@@ -98,15 +100,19 @@ ass                                </td>
         </div>
     </body>
 
-    </html>
+</html>
 }
 
 
+<div id="individual" class="modal">
+    <iframe src="_AddContact"></iframe>
+</div>
 
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
     <script>
         $(document).ready(function () {
             $('#myTable').dataTable();
