@@ -4,33 +4,138 @@
 <br />
 <center>
     <p>
-        <div class="col-md-8">
+        <div class="col-md-12">
             @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-2" align="left">
+                    Name
+                </div>
+                <div class="col-md-4" align="left">
+                    @Html.TextBoxFor(m => m.FName, new { @class = "form-control" })
+                </div>
+                <div class="col-md-2" align="left">
+                    @Html.TextBoxFor(m => m.MName, new { @class = "form-control" })
+                </div>
+                <div class="col-md-4" align="left">
+                    @Html.TextBoxFor(m => m.LName, new { @class = "form-control" })
+                </div>
+            </div>
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                    <div class="col-md-3" align="left">
+                        Email
+                    </div>
+                    <div class="col-md-9" align="left">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     </div>
                 </div>
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.FName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.FName, new { @class = "form-control" })
+                    <div class="col-md-3" align="left">
+                        Contact Group
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.ContactGroupId, new { @class = "form-control" })
                     </div>
                 </div>
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.LName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.LName, new { @class = "form-control" })
+                    <div class="col-md-3" align="left">
+                        Enable Client Portal
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.EnableClientPortal, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Cell Phone
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Work Phone
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.WorkPhone, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Home Phone
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Address
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Address 2
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        City
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        State
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Zip
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3" align="left">
+                        Country
+                    </div>
+                    <div class="col-md-9" align="left">
+                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <a class="btn btn-default" href="#" rel="modal:close">Cancel</a>
-                        <input type="submit" class="btn btn-default" value="Save Contact" />
+                        <input type="submit" class="btn btn-primary" value="Save Contact" />
                     </div>
                 </div>
             }

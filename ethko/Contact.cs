@@ -20,7 +20,21 @@ namespace ethko
         public string FName { get; set; }
         public string LName { get; set; }
         public string Email { get; set; }
+        public string MName { get; set; }
+        public short Archived { get; set; }
+        public Nullable<int> ContactGroupId { get; set; }
+        public short EnableClientPortal { get; set; }
+        public string CellPhone { get; set; }
+        public string WorkPhone { get; set; }
+        public string HomePhone { get; set; }
+        public string Address { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public string Country { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ContactGroup ContactGroup { get; set; }
     }
 }

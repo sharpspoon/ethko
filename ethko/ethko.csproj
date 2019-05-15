@@ -258,6 +258,9 @@
     <Compile Include="Contact.cs">
       <DependentUpon>ethko.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContactGroup.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\TasksController.cs" />

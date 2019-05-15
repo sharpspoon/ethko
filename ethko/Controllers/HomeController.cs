@@ -20,8 +20,18 @@ namespace ethko.Controllers
             return new Contact()
             {
                 FName = vm.FName,
+                MName = vm.MName,
                 LName = vm.LName,
                 UserId = vm.UserId,
+                CellPhone = vm.CellPhone,
+                WorkPhone = vm.WorkPhone,
+                HomePhone = vm.HomePhone,
+                Address = vm.Address,
+                Address2 = vm.Address2,
+                City = vm.City,
+                State = vm.State,
+                Zip = vm.Zip,
+                Country = vm.Country,
                 Email = vm.Email
             };
         }
