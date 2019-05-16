@@ -36,14 +36,25 @@
     <body style="margin:20px auto">
         <div class="container">
             <br />
+            Select Group
+            <select id='filterText' style='display:inline-block' onchange='filterText()'>
+                <option disabled selected>Select</option>
+                <option value='yes'>Yes</option>
+                <option value='no'>No</option>
+                <option value='all'>All</option>
+            </select>
+            <br />
+            <br />
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Group</th>
+                        <th>Cases</th>
                         <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <th>@Html.DisplayNameFor(model => model.UserId)</th>
                         <th>Added</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +64,7 @@
                         {
                             <tr>
                                 <td>
-                                    <a href='@Url.Action("ViewContact", "Contacts")'>@Html.DisplayFor(modelItem => item.FName)</a>
+                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.FName)</a>
                                 </td>
                                 <td>
                                     <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.LName)</a>
@@ -64,11 +75,21 @@
 
                                 </td>
                                 <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.UserId)</a>
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
 
                                 </td>
                                 <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.InsDate)</a>
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsDate)
+                                    by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.UserId)</a>
+
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="#individual" rel="modal:open" style="float: right">Edit Contact</a>
 
                                 </td>
                             </tr>
@@ -130,4 +151,22 @@
             background-color: #c4c4c4;
         }
     </style>
+
+
+    <script>
+        function filterText() {
+            var rex = new RegExp($('#filterText').val());
+            if (rex == "/all/") { clearFilter() } else {
+                $('.content').hide();
+                $('.content').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+            }
+        }
+
+        function clearFilter() {
+            $('.filterText').val('');
+            $('.content').show();
+        }
+    </script>
 }
