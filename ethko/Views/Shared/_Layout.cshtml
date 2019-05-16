@@ -32,7 +32,9 @@
         @RenderSection("SPAViews", required: false)
         <hr />
         <footer>
-            &copy; @DateTime.Now.Year <img src="../content/img/SAP_R_grad.png" alt="SAP" style="width:75px;height:37px;">
+            <img src="../content/img/SAP_R_grad.png" alt="SAP" style="width:75px;height:37px;">
+            <br />
+            &copy; @DateTime.Now.Year
             @if (Request.IsAuthenticated)
             {
                 using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
