@@ -1,0 +1,27 @@
+﻿@model ethko.Models.AddContactGroupViewModel
+
+<p>Add Group</p>
+<br />
+<center>
+    <p>
+        <div class="col-md-12">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-4" align="left">
+                    @Html.TextBoxFor(m => m.ContactGroupId, new { @class = "form-control", placeholder = "Group Name"})
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a class="btn btn-default" href="#" rel="modal:close">Cancel</a>
+                        <input type="submit" class="btn btn-primary" value="Save Group" />
+                    </div>
+                </div>
+            }
+        </div>
+    </p>
+</center>

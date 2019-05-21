@@ -1,5 +1,16 @@
 ﻿@model ethko.Models.AddContactIndividualViewModel
 
+<br />
+<a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("New", "Contacts")'>Add Contact</a>&nbsp;
+<h2>
+    @ViewBag.Title
+    <a class="btn btn-primary" href='@Url.Action("New", "Contacts")' style="float: right">Add Contact</a>
+    <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")' style="float: right">Import Contacts</a>
+</h2>
+
 <p>Add Contact - Individual</p>
 <br />
 <center>
@@ -10,20 +21,20 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
-            <div class="form-group">
-                <div class="col-md-2" align="left">
-                    Name
+                <div class="form-group">
+                    <div class="col-md-2" align="left">
+                        Name
+                    </div>
+                    <div class="col-md-4" align="left">
+                        @Html.TextBoxFor(m => m.FName, new { @class = "form-control", placeholder = "First Name" })
+                    </div>
+                    <div class="col-md-2" align="left">
+                        @Html.TextBoxFor(m => m.MName, new { @class = "form-control", placeholder = "M" })
+                    </div>
+                    <div class="col-md-4" align="left">
+                        @Html.TextBoxFor(m => m.LName, new { @class = "form-control", placeholder = "Last Name" })
+                    </div>
                 </div>
-                <div class="col-md-4" align="left">
-                    @Html.TextBoxFor(m => m.FName, new { @class = "form-control", placeholder = "First Name"})
-                </div>
-                <div class="col-md-2" align="left">
-                    @Html.TextBoxFor(m => m.MName, new { @class = "form-control", placeholder = "M" })
-                </div>
-                <div class="col-md-4" align="left">
-                    @Html.TextBoxFor(m => m.LName, new { @class = "form-control", placeholder = "Last Name" })
-                </div>
-            </div>
 
                 <div class="form-group">
                     <div class="col-md-2" align="left">

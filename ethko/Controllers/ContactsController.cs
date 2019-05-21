@@ -62,5 +62,10 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public ActionResult NewGroup()
+        {
+            return View();
+        }
     }
 }

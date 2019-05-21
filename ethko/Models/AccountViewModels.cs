@@ -132,12 +132,9 @@ namespace ethko.Models
         [Display(Name = "Last Name")]
         public string LName { get; set; }
 
-
-
         [Required]
         [Display(Name = "UserId")]
         public string UserId { get; set; }
-
 
         [EmailAddress]
         [Display(Name = "Email")]
@@ -175,8 +172,6 @@ namespace ethko.Models
 
         [Display(Name = "Country")]
         public string Country { get; set; }
-
-
     }
 
     [Table("Contacts")]
@@ -207,5 +202,12 @@ namespace ethko.Models
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
+    }
+
+    public class AddContactGroupViewModel
+    {
+        [Required]
+        [Display(Name = "Contact Group")]
+        public string ContactGroupName { get; set; }
     }
 }
