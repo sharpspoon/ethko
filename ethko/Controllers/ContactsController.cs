@@ -67,5 +67,29 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public ContactGroup ConvertViewModelToModel(AddContactGroupViewModel vm)
+        {
+            return new ContactGroup()
+            {
+                ContactGroupName = vm.ContactGroupName
+            };
+        }
+
+        [HttpPost]
+        public ActionResult NewGroup(AddContactGroupViewModel model)
+        {
+            var contactGroupModel = ConvertViewModelToModel(model);
+
+            using (Entities entities = new Entities())
+            {
+                entities.ContactGroups.Add(contactGroupModel);
+                //var user = User.Identity.GetUserName().ToString();
+                //contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                entities.SaveChanges();
+
+            }
+            return View(model);
+        }
     }
 }
