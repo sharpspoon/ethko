@@ -16,12 +16,12 @@ namespace ethko
     {
         public int ContactId { get; set; }
         public string UserId { get; set; }
-        public byte[] InsDate { get; set; }
+        public System.DateTime InsDate { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
-        public string Email { get; set; }
         public string MName { get; set; }
         public short Archived { get; set; }
+        public string Email { get; set; }
         public Nullable<int> ContactGroupId { get; set; }
         public short EnableClientPortal { get; set; }
         public string CellPhone { get; set; }
@@ -33,6 +33,7 @@ namespace ethko
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+        public byte[] RowVersion { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual ContactGroup ContactGroup { get; set; }

@@ -22,7 +22,10 @@ namespace ethko
     
         public int ContactGroupId { get; set; }
         public string ContactGroupName { get; set; }
+        public System.DateTime InsDate { get; set; }
+        public string FstUser { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
     }

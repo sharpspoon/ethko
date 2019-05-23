@@ -73,6 +73,8 @@
           </Key>
           <Property Name="ContactGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContactGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Contacts">
           <Key>
@@ -80,7 +82,7 @@
           </Key>
           <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="InsDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="FName" Type="varchar(max)" Nullable="false" />
           <Property Name="LName" Type="varchar(max)" Nullable="false" />
           <Property Name="MName" Type="varchar(max)" />
@@ -97,7 +99,20 @@
           <Property Name="State" Type="varchar" MaxLength="50" />
           <Property Name="Zip" Type="varchar" MaxLength="50" />
           <Property Name="Country" Type="varchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ContactGroups_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ContactGroups" Type="Self.ContactGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactGroups">
+              <PropertyRef Name="FstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contacts_ToTable">
           <End Role="ContactGroups" Type="Self.ContactGroups" Multiplicity="0..1" />
           <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
@@ -187,6 +202,10 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactGroups" EntityType="Self.ContactGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ContactGroups_AspNetUsers" Association="Self.FK_ContactGroups_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ContactGroups" EntitySet="ContactGroups" />
+          </AssociationSet>
           <AssociationSet Name="FK_Contacts_ToTable" Association="Self.FK_Contacts_ToTable">
             <End Role="ContactGroups" EntitySet="ContactGroups" />
             <End Role="Contacts" EntitySet="Contacts" />
@@ -274,34 +293,9 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Contacts" Relationship="Self.FK_Table_ToTable" FromRole="AspNetUsers" ToRole="Contacts" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-        </EntityType>
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="ContactId" />
-          </Key>
-          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InsDate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="FName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Table_ToTable" FromRole="Contacts" ToRole="AspNetUsers" />
-          <Property Name="MName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Archived" Type="Int16" Nullable="false" />
-          <Property Name="ContactGroupId" Type="Int32" />
-          <Property Name="EnableClientPortal" Type="Int16" Nullable="false" />
-          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WorkPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ContactGroup" Relationship="Model.FK_Contacts_ToTable" FromRole="Contact" ToRole="ContactGroup" />
+          <NavigationProperty Name="ContactGroups" Relationship="Model.FK_ContactGroups_AspNetUsers" FromRole="AspNetUser" ToRole="ContactGroup" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Table_ToTable" FromRole="AspNetUser" ToRole="Contact" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -331,18 +325,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_ToTable">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Contacts">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -353,7 +335,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -362,15 +343,20 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Contacts" EntitySet="Contacts" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="ContactGroups" EntityType="Model.ContactGroup" />
+          <AssociationSet Name="FK_ContactGroups_AspNetUsers" Association="Model.FK_ContactGroups_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ContactGroup" EntitySet="ContactGroups" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="Model.Contact" />
+          <AssociationSet Name="FK_Table_ToTable" Association="Model.FK_Table_ToTable">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Contacts_ToTable" Association="Model.FK_Contacts_ToTable">
             <End Role="ContactGroup" EntitySet="ContactGroups" />
             <End Role="Contact" EntitySet="Contacts" />
@@ -382,8 +368,62 @@
           </Key>
           <Property Name="ContactGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ContactGroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_ContactGroups_AspNetUsers" FromRole="ContactGroup" ToRole="AspNetUser" />
           <NavigationProperty Name="Contacts" Relationship="Model.FK_Contacts_ToTable" FromRole="ContactGroup" ToRole="Contact" />
         </EntityType>
+        <Association Name="FK_ContactGroups_AspNetUsers">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.ContactGroup" Role="ContactGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactGroup">
+              <PropertyRef Name="FstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Archived" Type="Int16" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactGroupId" Type="Int32" />
+          <Property Name="EnableClientPortal" Type="Int16" Nullable="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Table_ToTable" FromRole="Contact" ToRole="AspNetUser" />
+          <NavigationProperty Name="ContactGroup" Relationship="Model.FK_Contacts_ToTable" FromRole="Contact" ToRole="ContactGroup" />
+        </EntityType>
+        <Association Name="FK_Table_ToTable">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contacts_ToTable">
           <End Type="Model.ContactGroup" Role="ContactGroup" Multiplicity="0..1" />
           <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
@@ -458,31 +498,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="Model.Contact">
-              <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
-                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
-                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
-                <ScalarProperty Name="EnableClientPortal" ColumnName="EnableClientPortal" />
-                <ScalarProperty Name="ContactGroupId" ColumnName="ContactGroupId" />
-                <ScalarProperty Name="Archived" ColumnName="Archived" />
-                <ScalarProperty Name="MName" ColumnName="MName" />
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -494,8 +509,36 @@
           <EntitySetMapping Name="ContactGroups">
             <EntityTypeMapping TypeName="Model.ContactGroup">
               <MappingFragment StoreEntitySet="ContactGroups">
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
                 <ScalarProperty Name="ContactGroupName" ColumnName="ContactGroupName" />
                 <ScalarProperty Name="ContactGroupId" ColumnName="ContactGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="Model.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="EnableClientPortal" ColumnName="EnableClientPortal" />
+                <ScalarProperty Name="ContactGroupId" ColumnName="ContactGroupId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Archived" ColumnName="Archived" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

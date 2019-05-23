@@ -45,6 +45,7 @@ namespace ethko.Controllers
             {
                 entities.Contacts.Add(contactModel);
                 var user = User.Identity.GetUserName().ToString();
+                contactModel.InsDate = DateTime.Now;
                 contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
 

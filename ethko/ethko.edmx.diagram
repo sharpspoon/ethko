@@ -10,12 +10,13 @@
         <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Contact" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Table_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.ContactGroup" Width="1.5" PointX="7.375" PointY="3.875" />
+        <AssociationConnector Association="Model.FK_ContactGroups_AspNetUsers" />
+        <EntityTypeShape EntityType="Model.Contact" Width="1.5" PointX="9.625" PointY="3.5" />
+        <AssociationConnector Association="Model.FK_Table_ToTable" />
         <AssociationConnector Association="Model.FK_Contacts_ToTable" />
       </Diagram>
     </edmx:Diagrams>

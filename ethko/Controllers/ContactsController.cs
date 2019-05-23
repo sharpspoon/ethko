@@ -1,4 +1,6 @@
 ﻿using ethko.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -79,13 +81,15 @@ namespace ethko.Controllers
         [HttpPost]
         public ActionResult NewGroup(AddContactGroupViewModel model)
         {
+            var user = User.Identity.GetUserName().ToString();
             var contactGroupModel = ConvertViewModelToModel(model);
 
             using (Entities entities = new Entities())
             {
                 entities.ContactGroups.Add(contactGroupModel);
                 //var user = User.Identity.GetUserName().ToString();
-                //contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                contactGroupModel.InsDate = DateTime.Now;
+                contactGroupModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
 
             }
