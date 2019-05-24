@@ -40,9 +40,13 @@ namespace ethko.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult ContactGroups()
         {
-            return View();
+            Entities entities = new Entities();
+            IEnumerable<ContactGroup> contactGroups = entities.ContactGroups.ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(contactGroups.AsEnumerable());
         }
 
         public ActionResult CompaniesArchive()

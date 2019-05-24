@@ -1,4 +1,4 @@
-﻿@model ethko.Models.ContactIndividualViewModel
+﻿@model IEnumerable<ethko.ContactGroup>
 @{
     ViewBag.Title = "Contact Groups";
 }
@@ -17,7 +17,7 @@
 
 
 
-@using (Html.BeginForm("Index", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("ContactGroups", "Contacts", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -41,21 +41,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Client</td>
-                        <td>4</td>
-                        <td>System Default</td>
-                    </tr>
-                    <tr>
-                        <td>dynamic</td>
-                        <td>1</td>
-                        <td>username</td>
-                    </tr>
-                    <tr>
-                        <td>Unassigned</td>
-                        <td>0</td>
-                        <td>System Default</td>
-                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href='@Url.Action("ContactGroups", "Contacts", new { ContactId = item.ContactGroupId})'>@Html.DisplayFor(modelItem => item.ContactGroupName)</a>
+                                </td>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsDate)
+                                    by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.FstUser)</a>
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
