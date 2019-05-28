@@ -457,6 +457,7 @@
     <Content Include="Views\Contacts\New.cshtml" />
     <Content Include="Views\Contacts\NewGroup.cshtml" />
     <Content Include="Views\Contacts\_AddGroup.cshtml" />
+    <Content Include="Views\Contacts\_AddCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

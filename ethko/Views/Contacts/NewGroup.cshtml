@@ -2,43 +2,6 @@
     @Html.Partial("_AddGroup")
 }
 
-<br />
-<a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
-<a class="btn btn-primary" href='@Url.Action("New", "Contacts")'>Add Contact</a>&nbsp;
-<h2>
-    @ViewBag.Title
-    <a class="btn btn-primary" href='@Url.Action("New", "Contacts")' style="float: right">Add Contact</a>
-    <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")' style="float: right">Import Contacts</a>
-</h2>
-
-
-
-
-@using (Html.BeginForm("NewGroup", "Contacts", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <hr />
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Final Output</title>
-        <meta name="description" content="Bootstrap.">
-
-    </head>
-
-    <body style="margin:20px auto">
-        <div id="individual" class="modal">
-            <iframe src="_AddGroup"></iframe>
-        </div>
-    </body>
-
-</html>
-}
-
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>

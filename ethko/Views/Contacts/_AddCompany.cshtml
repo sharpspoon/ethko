@@ -1,10 +1,5 @@
 ﻿@model ethko.Models.AddContactIndividualViewModel
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
+
 <br />
 <a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
@@ -55,12 +50,7 @@
                         Contact Group
                     </div>
                     <div class="col-md-10" align="left">
-                        <select class="form-control" id="sel1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
+                        @Html.TextBoxFor(m => m.ContactGroupId, new { @class = "form-control" })
                     </div>
                 </div>
 
@@ -69,10 +59,7 @@
                         Enable Client Portal
                     </div>
                     <div class="col-md-10" align="left">
-                        <select class="form-control" id="sel1">
-                            <option>No</option>
-                            <option>Yes</option>
-                        </select>
+                        @Html.TextBoxFor(m => m.EnableClientPortal, new { @class = "form-control" })
                     </div>
                 </div>
 
