@@ -97,4 +97,40 @@ namespace ethko.Models
         [Display(Name = "Contact Group")]
         public string ContactGroupName { get; set; }
     }
+    
+    public class AddCompanyViewModel
+    {
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Website")]
+        public string Website { get; set; }
+
+        [Display(Name = "Main Phone")]
+        public string MainPhone { get; set; }
+
+        [Display(Name = "Fax Number")]
+        public string FaxNumber { get; set; }
+
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Display(Name = "Address2")]
+        public string Address2 { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Display(Name = "Zip")]
+        public string Zip { get; set; }
+
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+    }
 }
