@@ -74,6 +74,11 @@ namespace ethko.Controllers
             return View();
         }
 
+        public ActionResult NewCompany()
+        {
+            return View();
+        }
+
         public ContactGroup ConvertViewModelToModel(AddContactGroupViewModel vm)
         {
             return new ContactGroup()

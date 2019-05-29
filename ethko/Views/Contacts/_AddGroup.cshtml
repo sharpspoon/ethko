@@ -4,12 +4,7 @@
 <a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("Companies", "Contacts")'>Companies</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("ContactGroups", "Contacts")'>Contact Groups</a>&nbsp;
-<a class="btn btn-primary" href='@Url.Action("New", "Contacts")'>Add Contact</a>&nbsp;
-<h2>
-    @ViewBag.Title
-    <a class="btn btn-primary" href='@Url.Action("New", "Contacts")' style="float: right">Add Contact</a>
-    <a class="btn btn-default" href='@Url.Action("ContactsArchive", "Contacts")' style="float: right">Import Contacts</a>
-</h2>
+<a class="btn btn-primary" href='@Url.Action("New", "Contacts")'>Add Contact Group</a>&nbsp;
 
 <p>Add Group</p>
 <br />
@@ -29,7 +24,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <a class="btn btn-default" href="#" rel="modal:close">Cancel</a>
-                        <input type="submit" class="btn btn-primary" value="Save Group" />
+                        <input type="submit" class="btn btn-success" value="Save Group" />
                     </div>
                 </div>
             }
