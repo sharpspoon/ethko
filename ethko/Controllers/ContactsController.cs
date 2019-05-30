@@ -14,17 +14,16 @@ namespace ethko.Controllers
     {
         private readonly Entities db = new Entities();
 
-        public Contact ConvertViewModelToModel(GetContactIndividualViewModel vm)
+        //////////
+        //CONTACTS
+        //////////
+        //New
+        public ActionResult New()
         {
-            return new Contact()
-            {
-                FName = vm.FName,
-                LName = vm.LName,
-                UserId = vm.UserId,
-                Email = vm.Email
-            };
+            return View();
         }
 
+        //View List
         [HttpGet]
         public ActionResult Index()
         {
@@ -34,36 +33,45 @@ namespace ethko.Controllers
             return View(contacts.AsEnumerable());
         }
 
-        public ActionResult Companies()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult ContactGroups()
-        {
-            Entities entities = new Entities();
-            IEnumerable<ContactGroup> contactGroups = entities.ContactGroups.ToList();
-            //var contactModel = ConvertViewModelToModel(contacts);
-            return View(contactGroups.AsEnumerable());
-        }
-
-        public ActionResult CompaniesArchive()
-        {
-            return View();
-        }
-
+        //View Archive List
         public ActionResult ContactsArchive()
         {
             return View();
         }
 
+        //View Specific Contact
         public ActionResult ViewContact()
         {
             return View();
         }
 
+        //////////
+        //COMPANIES
+        //////////
+        //New
         public ActionResult NewCompany()
+        {
+            return View();
+        }
+
+        //View List
+        public ActionResult Companies()
+        {
+            return View();
+        }
+
+        //View Archive List
+        public ActionResult CompaniesArchive()
+        {
+            return View();
+        }
+
+
+        //////////
+        //GROUPS
+        //////////
+        //New
+        public ActionResult NewGroup()
         {
             return View();
         }
@@ -74,18 +82,6 @@ namespace ethko.Controllers
             {
                 ContactGroupName = vm.ContactGroupName
             };
-        }
-
-        //New Contact
-        public ActionResult New()
-        {
-            return View();
-        }
-
-        //New Group
-        public ActionResult NewGroup()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -103,6 +99,16 @@ namespace ethko.Controllers
                 entities.SaveChanges();
             }
             return View(model);
+        }
+
+        //View List
+        [HttpGet]
+        public ActionResult ContactGroups()
+        {
+            Entities entities = new Entities();
+            IEnumerable<ContactGroup> contactGroups = entities.ContactGroups.ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(contactGroups.AsEnumerable());
         }
     }
 }
