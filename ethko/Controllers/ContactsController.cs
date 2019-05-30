@@ -62,15 +62,19 @@ namespace ethko.Controllers
         public ActionResult Index()
         {
             Entities entities = new Entities();
-            IEnumerable<Contact> contacts = entities.Contacts.ToList();
+            IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
             //var contactModel = ConvertViewModelToModel(contacts);
             return View(contacts.AsEnumerable());
         }
 
         //View Archive List
+        [HttpGet]
         public ActionResult ContactsArchive()
         {
-            return View();
+            Entities entities = new Entities();
+            IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 1).ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(contacts.AsEnumerable());
         }
 
         //View Specific Contact
