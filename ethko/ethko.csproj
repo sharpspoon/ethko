@@ -255,6 +255,9 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>ethko.tt</DependentUpon>
     </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>ethko.tt</DependentUpon>
     </Compile>

@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="Model.Contact" Width="1.5" PointX="9.625" PointY="3.5" />
         <AssociationConnector Association="Model.FK_Table_ToTable" />
         <AssociationConnector Association="Model.FK_Contacts_ToTable" />
+        <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="5.25" PointY="7.125" />
+        <AssociationConnector Association="Model.FK_Companies_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

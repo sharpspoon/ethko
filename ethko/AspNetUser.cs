@@ -22,6 +22,7 @@ namespace ethko
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.ContactGroups = new HashSet<ContactGroup>();
             this.Contacts = new HashSet<Contact>();
+            this.Companies = new HashSet<Company>();
         }
     
         public string Id { get; set; }
@@ -48,5 +49,7 @@ namespace ethko
         public virtual ICollection<ContactGroup> ContactGroups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }

@@ -28,7 +28,6 @@ namespace ethko.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
             Entities entities = new Entities();
             IEnumerable<Contact> contacts = entities.Contacts.ToList();
             //var contactModel = ConvertViewModelToModel(contacts);
@@ -64,16 +63,6 @@ namespace ethko.Controllers
             return View();
         }
 
-        public ActionResult New()
-        {
-            return View();
-        }
-
-        public ActionResult NewGroup()
-        {
-            return View();
-        }
-
         public ActionResult NewCompany()
         {
             return View();
@@ -85,6 +74,18 @@ namespace ethko.Controllers
             {
                 ContactGroupName = vm.ContactGroupName
             };
+        }
+
+        //New Contact
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //New Group
+        public ActionResult NewGroup()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -100,7 +101,6 @@ namespace ethko.Controllers
                 contactGroupModel.InsDate = DateTime.Now;
                 contactGroupModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
-
             }
             return View(model);
         }

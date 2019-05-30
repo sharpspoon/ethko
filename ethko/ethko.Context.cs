@@ -32,5 +32,6 @@ namespace ethko
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<ContactGroup> ContactGroups { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ethko.Models.AddContactIndividualViewModel
+﻿@model ethko.Models.AddCompanyViewModel
 
 <br />
 <a class="btn btn-default" href='@Url.Action("Index", "Contacts")'>Contacts</a>&nbsp;
@@ -11,7 +11,7 @@
 <center>
     <p>
         <div class="col-md-12">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("NewCompany", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -21,13 +21,7 @@
                         Name
                     </div>
                     <div class="col-md-4" align="left">
-                        @Html.TextBoxFor(m => m.FName, new { @class = "form-control", placeholder = "First Name" })
-                    </div>
-                    <div class="col-md-2" align="left">
-                        @Html.TextBoxFor(m => m.MName, new { @class = "form-control", placeholder = "M" })
-                    </div>
-                    <div class="col-md-4" align="left">
-                        @Html.TextBoxFor(m => m.LName, new { @class = "form-control", placeholder = "Last Name" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
                     </div>
                 </div>
 
@@ -42,46 +36,28 @@
 
                 <div class="form-group">
                     <div class="col-md-2" align="left">
-                        Contact Group
+                        Website
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.ContactGroupId, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "mycompany.com" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-2" align="left">
-                        Enable Client Portal
+                        Main Phone
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.EnableClientPortal, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.MainPhone, new { @class = "form-control", placeholder = "555-555-5555" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-2" align="left">
-                        Cell Phone
+                        Fax Number
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control", placeholder = "555-555-5555" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-2" align="left">
-                        Work Phone
-                    </div>
-                    <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.WorkPhone, new { @class = "form-control", placeholder = "555-555-5555" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-2" align="left">
-                        Home Phone
-                    </div>
-                    <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control", placeholder = "555-555-5555" })
+                        @Html.TextBoxFor(m => m.FaxNumber, new { @class = "form-control", placeholder = "555-555-5555" })
                     </div>
                 </div>
 
@@ -99,7 +75,7 @@
                         Address 2
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", placeholder = "Apartment B" })
+                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", placeholder = "Apt B" })
                     </div>
                 </div>
 
