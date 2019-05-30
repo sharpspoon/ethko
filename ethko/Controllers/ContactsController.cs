@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace ethko.Controllers
 {
-
     [Authorize]
     public class ContactsController : Controller
     {
@@ -21,6 +20,41 @@ namespace ethko.Controllers
         public ActionResult New()
         {
             return View();
+        }
+
+        public Contact ConvertViewModelToModel(AddContactIndividualViewModel vm)
+        {
+            return new Contact()
+            {
+                FName = vm.FName,
+                MName = vm.MName,
+                LName = vm.LName,
+                CellPhone = vm.CellPhone,
+                WorkPhone = vm.WorkPhone,
+                HomePhone = vm.HomePhone,
+                Address = vm.Address,
+                Address2 = vm.Address2,
+                City = vm.City,
+                State = vm.State,
+                Zip = vm.Zip,
+                Country = vm.Country,
+                Email = vm.Email
+            };
+        }
+
+        [HttpPost]
+        public ActionResult New(AddContactIndividualViewModel model)
+        {
+            var contactModel = ConvertViewModelToModel(model);
+            var user = User.Identity.GetUserName().ToString();
+            using (Entities entities = new Entities())
+            {
+                entities.Contacts.Add(contactModel);
+                contactModel.InsDate = DateTime.Now;
+                contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                entities.SaveChanges();
+            }
+            return View(model);
         }
 
         //View List
@@ -132,7 +166,6 @@ namespace ethko.Controllers
             using (Entities entities = new Entities())
             {
                 entities.ContactGroups.Add(contactGroupModel);
-                //var user = User.Identity.GetUserName().ToString();
                 contactGroupModel.InsDate = DateTime.Now;
                 contactGroupModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();

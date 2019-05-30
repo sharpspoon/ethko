@@ -19,10 +19,6 @@ namespace ethko.Models
         [Display(Name = "Last Name")]
         public string LName { get; set; }
 
-        [Required]
-        [Display(Name = "UserId")]
-        public string UserId { get; set; }
-
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
