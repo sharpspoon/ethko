@@ -1,4 +1,4 @@
-﻿@model ethko.Models.ContactIndividualViewModel
+﻿@model IEnumerable<ethko.Company>
 @{
     ViewBag.Title = "Active Companies";
 }
@@ -19,7 +19,7 @@
 
 
 
-@using (Html.BeginForm("Index", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Companies", "Contacts", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -31,8 +31,10 @@
         <meta name="description" content="Bootstrap.">
 
     </head>
+
     <body style="margin:20px auto">
         <div class="container">
+            <br />
             <br />
             <table id="myTable" class="table table-hover">
                 <thead>
@@ -40,28 +42,55 @@
                         <th>Name</th>
                         <th>Cases</th>
                         <th>Contacts</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
                         <th>Added</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Anusha</td>
-                        <td>India</td>
-                        <td>10000</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Charles</td>
-                        <td>United Kingdom</td>
-                        <td>28000</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Sravani</td>
-                        <td>Australia</td>
-                        <td>7000</td>
-                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.Name})'>@Html.DisplayFor(modelItem => item.Name)</a>
+                                </td>
+                                <td>
+                                    5
+                                </td>
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsDate)
+                                    by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.FstUser)</a>
+
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="#individual" rel="modal:open" style="float: right">Edit Contact</a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (Model == null)
+                    {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                    }
+
                 </tbody>
             </table>
         </div>
@@ -70,8 +99,11 @@
 </html>
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
     <script>
         $(document).ready(function () {
             $('#myTable').dataTable();
@@ -89,4 +121,22 @@
             background-color: #c4c4c4;
         }
     </style>
+
+
+    <script>
+        function filterText() {
+            var rex = new RegExp($('#filterText').val());
+            if (rex == "/all/") { clearFilter() } else {
+                $('.content').hide();
+                $('.content').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+            }
+        }
+
+        function clearFilter() {
+            $('.filterText').val('');
+            $('.content').show();
+        }
+    </script>
 }

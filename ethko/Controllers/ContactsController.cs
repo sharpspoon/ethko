@@ -90,9 +90,13 @@ namespace ethko.Controllers
         }
 
         //View List
+        [HttpGet]
         public ActionResult Companies()
         {
-            return View();
+            Entities entities = new Entities();
+            IEnumerable<Company> companies = entities.Companies.ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(companies.AsEnumerable());
         }
 
         //View Archive List
