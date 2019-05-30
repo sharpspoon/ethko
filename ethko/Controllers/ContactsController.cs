@@ -54,6 +54,41 @@ namespace ethko.Controllers
             return View();
         }
 
+        public Company ConvertViewModelToModel(AddCompanyViewModel vm)
+        {
+            return new Company()
+            {
+                Name = vm.Name,
+                Email = vm.Email,
+                Website = vm.Website,
+                MainPhone = vm.MainPhone,
+                FaxNumber = vm.FaxNumber,
+                Address = vm.Address,
+                Address2 = vm.Address2,
+                City = vm.City,
+                State = vm.State,
+                Zip = vm.Zip,
+                Country = vm.Country
+            };
+        }
+
+        [HttpPost]
+        public ActionResult NewCompany(AddCompanyViewModel model)
+        {
+            var user = User.Identity.GetUserName().ToString();
+            var companyModel = ConvertViewModelToModel(model);
+
+            using (Entities entities = new Entities())
+            {
+                entities.Companies.Add(companyModel);
+                //var user = User.Identity.GetUserName().ToString();
+                companyModel.InsDate = DateTime.Now;
+                companyModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                entities.SaveChanges();
+            }
+            return View(model);
+        }
+
         //View List
         public ActionResult Companies()
         {
