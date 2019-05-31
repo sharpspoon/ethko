@@ -1,4 +1,4 @@
-﻿@model ethko.Models.ContactIndividualViewModel
+﻿@model ethko.Models.AddContactIndividualViewModel
 @{
     ViewBag.Title = "Contact Details";
 }
@@ -32,6 +32,9 @@
     <body style="margin:20px auto">
         <div class="col-md-2">
             <div class="well">
+                <a class="btn btn-primary" href='@Url.Action("ViewContact", "Contacts")'>Edit Contact</a>
+                <br />
+                <br />
                 <a class="btn btn-danger" href='@Url.Action("ViewContact", "Contacts")'>Archive Contact</a>
                 <br />
                 <br />
@@ -55,7 +58,7 @@
                             <br />
                             <div class="well">
                                 <h4>Contact Information</h4>
-                                Name:
+                                Name:@Html.DisplayFor(m => m.FName)
                                 <br />
                                 <br />
                                 Company:

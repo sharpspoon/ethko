@@ -81,10 +81,8 @@ namespace ethko.Models
 
     public class ContactIndividualViewModel
     {
-        [Required]
-        [Phone]
-        [Display(Name = "Phone Number")]
-        public string Number { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
     }
 
     public class AddContactGroupViewModel

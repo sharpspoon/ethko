@@ -78,8 +78,11 @@ namespace ethko.Controllers
         }
 
         //View Specific Contact
-        public ActionResult ViewContact()
+        [HttpGet]
+        public ActionResult ViewContact(int? ContactId)
         {
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
             return View();
         }
 
