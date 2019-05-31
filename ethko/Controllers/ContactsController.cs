@@ -54,7 +54,7 @@ namespace ethko.Controllers
                 contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
             }
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         //View List
@@ -124,7 +124,7 @@ namespace ethko.Controllers
                 companyModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
             }
-            return View(model);
+            return RedirectToAction("Companies");
         }
 
         //View List
@@ -177,7 +177,7 @@ namespace ethko.Controllers
                 contactGroupModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
             }
-            return View(model);
+            return RedirectToAction("ContactGroups");
         }
 
         //View List

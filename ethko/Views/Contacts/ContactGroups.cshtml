@@ -37,7 +37,8 @@
                     <tr>
                         <th>Group Name</th>
                         <th>Contacts</th>
-                        <th>Created By</th>
+                        <th>Added</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,20 +46,24 @@
                     {
                         foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts", new { ContactId = item.ContactGroupId})'>@Html.DisplayFor(modelItem => item.ContactGroupName)</a>
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.InsDate)
-                                    by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.FstUser)</a>
+                    <tr>
+                        <td>
+                            <a href='@Url.Action("ContactGroups", "Contacts", new { ContactId = item.ContactGroupId})'>@Html.DisplayFor(modelItem => item.ContactGroupName)</a>
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InsDate)
+                            by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.FstUser)</a>
 
 
-                                </td>
-                            </tr>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="#individual" rel="modal:open" style="float: right">Edit Group</a>
+
+                        </td>
+                    </tr>
                         }
                     }
                 </tbody>
