@@ -1,4 +1,4 @@
-﻿@model ethko.Models.ContactIndividualViewModel
+﻿@model IEnumerable<ethko.Company>
 @{
     ViewBag.Title = "Archived Companies";
 }
@@ -34,34 +34,57 @@
     <body style="margin:20px auto">
         <div class="container">
             <br />
+            <br />
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Cases</th>
                         <th>Contacts</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
                         <th>Added</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Anusha</td>
-                        <td>India</td>
-                        <td>10000</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Charles</td>
-                        <td>United Kingdom</td>
-                        <td>28000</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Sravani</td>
-                        <td>Australia</td>
-                        <td>7000</td>
-                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.Name})'>@Html.DisplayFor(modelItem => item.Name)</a>
+                                </td>
+                                <td>
+                                    5
+                                </td>
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsDate)
+                                    by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.FstUser)</a>
+
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="#individual" rel="modal:open" style="float: right">Edit Contact</a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (Model == null)
+                    {
+                        <tr>
+                            <td></td>
+                        </tr>
+                    }
+
                 </tbody>
             </table>
         </div>

@@ -140,7 +140,10 @@ namespace ethko.Controllers
         //View Archive List
         public ActionResult CompaniesArchive()
         {
-            return View();
+            Entities entities = new Entities();
+            IEnumerable<Company> companies = entities.Companies.Where(m => m.Archived == 1).ToList();
+            //var contactModel = ConvertViewModelToModel(contacts);
+            return View(companies.AsEnumerable());
         }
 
 
