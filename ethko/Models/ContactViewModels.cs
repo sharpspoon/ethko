@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ethko.Models
 {
-
+    //Add
     public class AddContactIndividualViewModel
     {
         [Required]
@@ -56,42 +56,6 @@ namespace ethko.Models
         [Display(Name = "Country")]
         public string Country { get; set; }
     }
-
-    [Table("Contacts")]
-    public class GetContactIndividualViewModel
-    {
-        [Display(Name = "First Name")]
-        public string FName { get; set; }
-
-        [Display(Name = "Last Name")]
-        public string LName { get; set; }
-
-        [Display(Name = "User Id")]
-        public string UserId { get; set; }
-
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Display(Name = "Contact Id")]
-        public string ContactId { get; set; }
-
-        [Display(Name = "Date Created")]
-        public string InsDate { get; set; }
-    }
-
-    public class ContactIndividualViewModel
-    {
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-    }
-
-    public class AddContactGroupViewModel
-    {
-        [Required]
-        [Display(Name = "Contact Group")]
-        public string ContactGroupName { get; set; }
-    }
-    
     public class AddCompanyViewModel
     {
         [Display(Name = "Name")]
@@ -127,4 +91,44 @@ namespace ethko.Models
         [Display(Name = "Country")]
         public string Country { get; set; }
     }
+    public class AddContactGroupViewModel
+    {
+        [Required]
+        [Display(Name = "Contact Group")]
+        public string ContactGroupName { get; set; }
+    }
+
+
+    //not sure if i am using this
+    [Table("Contacts")]
+    public class GetContactIndividualViewModel
+    {
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
+
+        [Display(Name = "User Id")]
+        public string UserId { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Contact Id")]
+        public string ContactId { get; set; }
+
+        [Display(Name = "Date Created")]
+        public string InsDate { get; set; }
+    }
+
+    public class ContactIndividualViewModel
+    {
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+    }
+
+
+    
+
 }

@@ -83,7 +83,7 @@ namespace ethko.Controllers
         {
             Entities entities = new Entities();
             Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
-            return View();
+            return View(contacts);
         }
 
         //////////
