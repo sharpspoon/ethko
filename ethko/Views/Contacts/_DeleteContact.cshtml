@@ -11,38 +11,17 @@
 <br />
 <h1>Delete Contact</h1>
 
-
-
-
 @using (Html.BeginForm("DeleteConfirmed", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form", ContactId = Model.ContactId }))
 {
+    <h3>Really Delete @Html.DisplayFor(m => m.FName)   @Html.DisplayFor(m => m.MName)   @Html.DisplayFor(m => m.LName)?  This action is irreversible!</h3>
+    <br />
+    <h3>ContactId: @Html.DisplayFor(m => m.ContactId)</h3>
+    <br />
+    <br />
+    <br />
     @Html.AntiForgeryToken()
-    <hr />
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Final Output</title>
-        <meta name="description" content="Bootstrap.">
-
-    </head>
-    <body style="margin:20px auto">
-        <h3>Really Delete @Html.DisplayFor(m => m.FName)   @Html.DisplayFor(m => m.MName)   @Html.DisplayFor(m => m.LName)?  This action is irreversible!</h3>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-danger" />
-                </div>
-            }
-        </div>
-    </body>
-
-</html>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
 }
 

@@ -98,7 +98,21 @@ namespace ethko.Models
         public string ContactGroupName { get; set; }
     }
 
+    public class DeleteContactIndividualViewModel
+    {
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
 
+        [Display(Name = "Middle Name")]
+        public string MName { get; set; }
+        
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
+        [Required]
+        public string ContactId { get; set; }
+    }
+
+    
     //not sure if i am using this
     [Table("Contacts")]
     public class GetContactIndividualViewModel

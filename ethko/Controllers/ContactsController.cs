@@ -12,7 +12,7 @@ namespace ethko.Controllers
     [Authorize]
     public class ContactsController : Controller
     {
-        private readonly Entities db = new Entities();
+        //private readonly Entities db = new Entities();
 
         //////////
         //CONTACTS
@@ -100,20 +100,16 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
+        [HttpPost, ActionName("DeleteConfirmed")]
         public ActionResult DeleteConfirmed(int? ContactId)
         {
-            return View();
+            
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
+            entities.Contacts.Remove(contacts);
+            entities.SaveChanges();
+            return RedirectToAction("Index");
         }
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int ContactId)
-        //{
-        //    Contact contacts = db.Contacts.Find(ContactId);
-        //    db.Contacts.Remove(contacts);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         //////////
         //COMPANIES
