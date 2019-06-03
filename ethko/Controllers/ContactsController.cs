@@ -96,7 +96,7 @@ namespace ethko.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Entities entities = new Entities();
-            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
+            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).Single();
             return View(contacts);
         }
 
@@ -105,6 +105,7 @@ namespace ethko.Controllers
         {
             
             Entities entities = new Entities();
+            
             Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
             entities.Contacts.Remove(contacts);
             entities.SaveChanges();

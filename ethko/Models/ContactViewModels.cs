@@ -108,7 +108,6 @@ namespace ethko.Models
         
         [Display(Name = "Last Name")]
         public string LName { get; set; }
-        [Required]
         public string ContactId { get; set; }
     }
 
