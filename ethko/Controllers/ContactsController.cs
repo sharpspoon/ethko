@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace ethko.Controllers
@@ -90,18 +91,29 @@ namespace ethko.Controllers
         [HttpGet]
         public ActionResult Delete(int? ContactId)
         {
+            if (ContactId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Entities entities = new Entities();
             Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
             return View(contacts);
         }
-        
-        [HttpPost]
+
         public ActionResult DeleteConfirmed(int? ContactId)
         {
-            Entities entities = new Entities();
-            Contact contacts = entities.Contacts.Remove(entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault());
-            return RedirectToAction("Index");
+            return View();
         }
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int ContactId)
+        //{
+        //    Contact contacts = db.Contacts.Find(ContactId);
+        //    db.Contacts.Remove(contacts);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         //////////
         //COMPANIES
