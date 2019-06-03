@@ -8,6 +8,7 @@
     [Archived]           SMALLINT       DEFAULT ((0)) NOT NULL,
     [Email]              VARCHAR (MAX)  NOT NULL,
     [ContactGroupId]     INT            NULL,
+	[CompanyId]     INT            NULL,
     [EnableClientPortal] SMALLINT       DEFAULT ((0)) NOT NULL,
     [CellPhone]          VARCHAR (50)   NULL,
     [WorkPhone]          VARCHAR (50)   NULL,
@@ -20,7 +21,8 @@
     [Country]            VARCHAR (MAX)  NULL,
     [RowVersion]         ROWVERSION     NOT NULL,
     PRIMARY KEY CLUSTERED ([ContactId] ASC),
-    CONSTRAINT [FK_Table_ToTable] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]),
-    CONSTRAINT [FK_Contacts_ToTable] FOREIGN KEY ([ContactGroupId]) REFERENCES [dbo].[ContactGroups] ([ContactGroupId])
+    CONSTRAINT [FK_Contacts_ToAspNetUsers] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]),
+    CONSTRAINT [FK_Contacts_ToContactGroups] FOREIGN KEY ([ContactGroupId]) REFERENCES [dbo].[ContactGroups] ([ContactGroupId]),
+	CONSTRAINT [FK_Contacts_ToCompanies] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Companies] ([CompanyId])
 );
 

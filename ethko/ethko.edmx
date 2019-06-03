@@ -110,6 +110,7 @@
           <Property Name="Archived" Type="smallint" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="ContactGroupId" Type="int" />
+          <Property Name="CompanyId" Type="int" />
           <Property Name="EnableClientPortal" Type="smallint" Nullable="false" />
           <Property Name="CellPhone" Type="varchar" MaxLength="50" />
           <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
@@ -146,7 +147,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contacts_ToTable">
+        <Association Name="FK_Contacts_ToAspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_ToCompanies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_ToContactGroups">
           <End Role="ContactGroups" Type="Self.ContactGroups" Multiplicity="0..1" />
           <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,18 +239,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_ToTable">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Contacts">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -244,7 +257,15 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="ContactGroups" EntitySet="ContactGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contacts_ToTable" Association="Self.FK_Contacts_ToTable">
+          <AssociationSet Name="FK_Contacts_ToAspNetUsers" Association="Self.FK_Contacts_ToAspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_ToCompanies" Association="Self.FK_Contacts_ToCompanies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_ToContactGroups" Association="Self.FK_Contacts_ToContactGroups">
             <End Role="ContactGroups" EntitySet="ContactGroups" />
             <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
@@ -263,10 +284,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -405,6 +422,10 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Company" EntitySet="Companies" />
           </AssociationSet>
+          <AssociationSet Name="FK_Contacts_ToCompanies" Association="Model.FK_Contacts_ToCompanies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ContactGroup">
           <Key>
@@ -455,6 +476,8 @@
           <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Table_ToTable" FromRole="Contact" ToRole="AspNetUser" />
           <NavigationProperty Name="ContactGroup" Relationship="Model.FK_Contacts_ToTable" FromRole="Contact" ToRole="ContactGroup" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Contacts_ToCompanies" FromRole="Contact" ToRole="Company" />
         </EntityType>
         <Association Name="FK_Table_ToTable">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -501,6 +524,7 @@
           <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Companies_AspNetUsers" FromRole="Company" ToRole="AspNetUser" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Contacts_ToCompanies" FromRole="Company" ToRole="Contact" />
         </EntityType>
         <Association Name="FK_Companies_AspNetUsers">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -511,6 +535,18 @@
             </Principal>
             <Dependent Role="Company">
               <PropertyRef Name="FstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_ToCompanies">
+          <End Type="Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="CompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -597,6 +633,7 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="Model.Contact">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Zip" ColumnName="Zip" />

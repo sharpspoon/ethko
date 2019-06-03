@@ -20,6 +20,7 @@
         <AssociationConnector Association="Model.FK_Contacts_ToTable" />
         <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="5.25" PointY="7.125" />
         <AssociationConnector Association="Model.FK_Companies_AspNetUsers" />
+        <AssociationConnector Association="Model.FK_Contacts_ToCompanies" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
