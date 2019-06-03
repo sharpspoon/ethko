@@ -13,6 +13,7 @@ namespace ethko.Controllers
     public class ContactsController : Controller
     {
         //private readonly Entities db = new Entities();
+        Entities entities = new Entities();
 
         //////////
         //CONTACTS
@@ -100,16 +101,17 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
-        [HttpPost, ActionName("DeleteConfirmed")]
+        //[HttpPost]
         public ActionResult DeleteConfirmed(int? ContactId)
         {
-            
-            Entities entities = new Entities();
-            
+            if (ContactId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
             entities.Contacts.Remove(contacts);
             entities.SaveChanges();
-            return RedirectToAction("Index");
+            return View(contacts);
         }
 
         //////////

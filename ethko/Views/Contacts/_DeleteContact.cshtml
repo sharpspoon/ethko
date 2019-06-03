@@ -11,17 +11,23 @@
 <br />
 <h1>Delete Contact</h1>
 
-@using (Html.BeginForm("DeleteConfirmed", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form", ContactId = Model.ContactId }))
+@using (Html.BeginForm("DeleteConfirmed", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <h3>Really Delete @Html.DisplayFor(m => m.FName)   @Html.DisplayFor(m => m.MName)   @Html.DisplayFor(m => m.LName)?  This action is irreversible!</h3>
+    <font color="red">
+        <h3>Really DELETE this user?  This action is irreversible!</h3>
+    </font>
     <br />
     <h3>ContactId: @Html.DisplayFor(m => m.ContactId)</h3>
+    @Html.DisplayFor(m => m.FName)
+    <br />
+    @Html.DisplayFor(m => m.MName)
+    <br />
+    @Html.DisplayFor(m => m.LName)
+    <br />
     <br />
     <br />
     <br />
     @Html.AntiForgeryToken()
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-danger" />
-    </div>
+    <a class="btn btn-danger" href='@Url.Action("DeleteConfirmed", "Contacts", new { ContactId = Model.ContactId })'>Delete Contact</a>
 }
 
