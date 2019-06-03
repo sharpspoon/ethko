@@ -86,6 +86,23 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
+        //Delete Specific Contact
+        [HttpGet]
+        public ActionResult Delete(int? ContactId)
+        {
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
+            return View(contacts);
+        }
+        
+        [HttpPost]
+        public ActionResult DeleteConfirmed(int? ContactId)
+        {
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Remove(entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault());
+            return RedirectToAction("Index");
+        }
+
         //////////
         //COMPANIES
         //////////

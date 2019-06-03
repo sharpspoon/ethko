@@ -107,6 +107,7 @@
           <Property Name="FName" Type="varchar(max)" Nullable="false" />
           <Property Name="LName" Type="varchar(max)" Nullable="false" />
           <Property Name="MName" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="Archived" Type="smallint" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="ContactGroupId" Type="int" />
@@ -115,12 +116,19 @@
           <Property Name="CellPhone" Type="varchar" MaxLength="50" />
           <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
           <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="SSN" Type="varchar" MaxLength="9" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="50" />
           <Property Name="Zip" Type="varchar" MaxLength="50" />
           <Property Name="Country" Type="varchar(max)" />
+          <Property Name="License" Type="varchar(max)" />
+          <Property Name="Website" Type="varchar(max)" />
+          <Property Name="Notes" Type="varchar(max)" />
+          <Property Name="Birthday" Type="date" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <Association Name="FK_Companies_AspNetUsers">
@@ -478,6 +486,14 @@
           <NavigationProperty Name="ContactGroup" Relationship="Model.FK_Contacts_ToTable" FromRole="Contact" ToRole="ContactGroup" />
           <Property Name="CompanyId" Type="Int32" />
           <NavigationProperty Name="Company" Relationship="Model.FK_Contacts_ToCompanies" FromRole="Contact" ToRole="Company" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SSN" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="License" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Table_ToTable">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -633,6 +649,14 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="Model.Contact">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="License" ColumnName="License" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Country" ColumnName="Country" />

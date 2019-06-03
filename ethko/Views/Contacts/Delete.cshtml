@@ -1,6 +1,6 @@
 ﻿@model ethko.Contact
 @{
-    ViewBag.Title = "Contact Details";
+    ViewBag.Title = "Delete Contact";
 }
 
 <br />
@@ -38,7 +38,7 @@
                 <a class="btn btn-danger" href='@Url.Action("ViewContact", "Contacts")'>Archive Contact</a>
                 <br />
                 <br />
-                <a class="btn btn-danger" href='@Url.Action("Delete", "Contacts", new { ContactId = Model.ContactId })'>Delete Contact</a>
+                <a class="btn btn-danger" href='@Url.Action("DeleteContact", "Contacts")'>Delete Contact</a>
             </div>
         </div>
         <div class="col-md-10">

@@ -34,8 +34,18 @@ namespace ethko
         public string Zip { get; set; }
         public string Country { get; set; }
         public byte[] RowVersion { get; set; }
+        public Nullable<int> CompanyId { get; set; }
+        public string Title { get; set; }
+        public string SSN { get; set; }
+        public string JobTitle { get; set; }
+        public string Website { get; set; }
+        public string Notes { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
+        public string Fax { get; set; }
+        public string License { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual ContactGroup ContactGroup { get; set; }
+        public virtual Company Company { get; set; }
     }
 }
