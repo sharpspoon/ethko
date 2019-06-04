@@ -111,7 +111,7 @@ namespace ethko.Controllers
             Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
             entities.Contacts.Remove(contacts);
             entities.SaveChanges();
-            return View(contacts);
+            return View();
         }
 
         //Archive Specific Contact
@@ -125,16 +125,19 @@ namespace ethko.Controllers
             var result = entities.Contacts.SingleOrDefault(m => m.ContactId == ContactId);
             if (result != null)
             {
-                result.Archived = 1;
-                entities.SaveChanges();
+                if (result.Archived == 1)
+                {
+                    result.Archived = 0;
+                    entities.SaveChanges();
+                }
+                else
+                {
+                    result.Archived = 1;
+                    entities.SaveChanges();
+                }
+
             }
-
-
-
-            //Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
-            //entities.Contacts.Remove(contacts);
-            //entities.SaveChanges();
-            return View();
+            return View(result);
         }
 
         //////////

@@ -35,7 +35,15 @@
                 <a class="btn btn-primary" href='@Url.Action("ViewContact", "Contacts")'>Edit Contact</a>
                 <br />
                 <br />
-                <a class="btn btn-danger" href='@Url.Action("Archive", "Contacts", new { ContactId = Model.ContactId })'>Archive Contact</a>
+                @if (Model.Archived == 1)
+                {
+                    <a class="btn btn-danger" href='@Url.Action("Archive", "Contacts", new { ContactId = Model.ContactId })'>Activate Contact</a>
+                }
+                else
+                {
+                    <a class="btn btn-danger" href='@Url.Action("Archive", "Contacts", new { ContactId = Model.ContactId })'>Archive Contact</a>
+                }
+
                 <br />
                 <br />
                 <a class="btn btn-danger" href='@Url.Action("Delete", "Contacts", new { ContactId = Model.ContactId })'>Delete Contact</a>
