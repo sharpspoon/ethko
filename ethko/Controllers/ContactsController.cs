@@ -114,6 +114,29 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
+        //Archive Specific Contact
+        [HttpGet]
+        public ActionResult Archive(int? ContactId)
+        {
+            if (ContactId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var result = entities.Contacts.SingleOrDefault(m => m.ContactId == ContactId);
+            if (result != null)
+            {
+                result.Archived = 1;
+                entities.SaveChanges();
+            }
+
+
+
+            //Contact contacts = entities.Contacts.Find(ContactId);//works if hardcode in the contactid
+            //entities.Contacts.Remove(contacts);
+            //entities.SaveChanges();
+            return View();
+        }
+
         //////////
         //COMPANIES
         //////////
