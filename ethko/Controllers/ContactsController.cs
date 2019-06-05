@@ -21,6 +21,8 @@ namespace ethko.Controllers
         //New
         public ActionResult New()
         {
+            var contactGroups = new SelectList(entities.ContactGroups.ToList(), "ContactGroupId", "ContactGroupName");
+            ViewData["DBContactGroups"] = contactGroups;
             return View();
         }
 
