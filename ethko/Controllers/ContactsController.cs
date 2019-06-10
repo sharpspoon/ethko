@@ -71,8 +71,9 @@ namespace ethko.Controllers
             {
                 var contacts = from c in entities.Contacts
                                join cg in entities.ContactGroups on c.ContactGroupId equals cg.ContactGroupId
+                               join u in entities.AspNetUsers on c.UserId equals u.Id
                                where c.Archived == 0
-                               select new GetContactListViewModel() { ContactId = c.ContactId.ToString(), FName = c.FName, LName = c.LName, Email = c.Email, UserId = c.UserId, InsDate = c.InsDate.ToString(), contactGroupList = cg.ContactGroupName};
+                               select new GetContactListViewModel() { ContactId = c.ContactId.ToString(), FName = c.FName, LName = c.LName, Email = c.Email, UserId = u.UserName, InsDate = c.InsDate.ToString(), contactGroupList = cg.ContactGroupName};
 
                 //IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
                 //var contactModel = ConvertViewModelToModel(contacts);
