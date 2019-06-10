@@ -128,6 +128,8 @@ namespace ethko.Models
         public string InsDate { get; set; }
         [Display(Name = "UserId")]
         public string UserId { get; set; }
+        [Display(Name = "contactGroupList")]
+        public string contactGroupList { get; set; }
         public Contact contact { get; set; }
         public ContactGroup contactGroup { get; set; }
     }

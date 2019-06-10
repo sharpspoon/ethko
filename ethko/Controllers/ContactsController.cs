@@ -21,7 +21,7 @@ namespace ethko.Controllers
         //New
         public ActionResult New()
         {
-            var contactGroups = new SelectList(entities.ContactGroups.ToList(), "ContactGroupId", "ContactGroupName");
+            var contactGroups = new SelectList(entities.ContactGroups.ToList(), "ContactGroupName", "ContactGroupName");
             ViewData["DBContactGroups"] = contactGroups;
             return View();
         }
@@ -55,6 +55,8 @@ namespace ethko.Controllers
             {
                 entities.Contacts.Add(contactModel);
                 contactModel.InsDate = DateTime.Now;
+                string contactGroupName = Request.Form["ContactGroups"].ToString();
+                contactModel.ContactGroupId = entities.ContactGroups.Where(m => m.ContactGroupName == contactGroupName).Select(m => m.ContactGroupId).FirstOrDefault();
                 contactModel.UserId = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
                 entities.SaveChanges();
             }
@@ -68,9 +70,9 @@ namespace ethko.Controllers
             using(Entities entities = new Entities())
             {
                 var contacts = from c in entities.Contacts
-                               //join cg in entities.ContactGroups on c.ContactGroupId equals cg.ContactGroupId
+                               join cg in entities.ContactGroups on c.ContactGroupId equals cg.ContactGroupId
                                where c.Archived == 0
-                               select new GetContactListViewModel() { ContactId = c.ContactId.ToString(), FName = c.FName, LName = c.LName, Email = c.Email, UserId = c.UserId, InsDate = c.InsDate.ToString()};
+                               select new GetContactListViewModel() { ContactId = c.ContactId.ToString(), FName = c.FName, LName = c.LName, Email = c.Email, UserId = c.UserId, InsDate = c.InsDate.ToString(), contactGroupList = cg.ContactGroupName};
 
                 //IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
                 //var contactModel = ConvertViewModelToModel(contacts);
