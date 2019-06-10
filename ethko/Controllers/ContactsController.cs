@@ -65,10 +65,18 @@ namespace ethko.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            Entities entities = new Entities();
-            IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
-            //var contactModel = ConvertViewModelToModel(contacts);
-            return View(contacts.AsEnumerable());
+            using(Entities entities = new Entities())
+            {
+                var contacts = from c in entities.Contacts
+                               //join cg in entities.ContactGroups on c.ContactGroupId equals cg.ContactGroupId
+                               where c.Archived == 0
+                               select new GetContactListViewModel() { ContactId = c.ContactId.ToString(), FName = c.FName, LName = c.LName, Email = c.Email, UserId = c.UserId, InsDate = c.InsDate.ToString()};
+
+                //IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
+                //var contactModel = ConvertViewModelToModel(contacts);
+                return View(contacts.ToList());
+            }
+
         }
 
         //View Archive List

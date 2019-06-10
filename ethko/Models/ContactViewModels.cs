@@ -112,27 +112,24 @@ namespace ethko.Models
     }
 
     
-    //not sure if i am using this
     [Table("Contacts")]
-    public class GetContactIndividualViewModel
+    public class GetContactListViewModel
     {
+        [Required]
+        [Display(Name = "ContactId")]
+        public string ContactId { get; set; }
         [Display(Name = "First Name")]
         public string FName { get; set; }
-
         [Display(Name = "Last Name")]
         public string LName { get; set; }
-
-        [Display(Name = "User Id")]
-        public string UserId { get; set; }
-
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Display(Name = "Contact Id")]
-        public string ContactId { get; set; }
-
-        [Display(Name = "Date Created")]
+        [Display(Name = "InsDate")]
         public string InsDate { get; set; }
+        [Display(Name = "UserId")]
+        public string UserId { get; set; }
+        public Contact contact { get; set; }
+        public ContactGroup contactGroup { get; set; }
     }
 
     public class ContactIndividualViewModel
