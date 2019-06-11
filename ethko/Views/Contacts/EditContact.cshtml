@@ -52,16 +52,22 @@
                             <br />
                             <div class="well">
                                 <h4>Contact Information</h4>
-                                Name:  @Html.DisplayFor(m => m.FName)   @Html.DisplayFor(m => m.MName)   @Html.DisplayFor(m => m.LName)
+                                First Name:  @Html.EditorFor(m => m.FName) @Html.ValidationMessageFor(m => m.FName)
                                 <br />
                                 <br />
-                                Company:  @Html.DisplayFor(m => m.CompanyId)
+                                Middle Name:  @Html.EditorFor(m => m.MName) @Html.ValidationMessageFor(m => m.MName)
                                 <br />
                                 <br />
-                                Job Title:  @Html.DisplayFor(m => m.JobTitle)
+                                Last Name:  @Html.EditorFor(m => m.LName) @Html.ValidationMessageFor(m => m.LName)
                                 <br />
                                 <br />
-                                Group:  @Html.DisplayFor(m => m.ContactGroupId)
+                                Company:  @Html.EditorFor(m => m.CompanyId) @Html.ValidationMessageFor(m => m.CompanyId)
+                                <br />
+                                <br />
+                                Job Title:  @Html.EditorFor(m => m.JobTitle) @Html.ValidationMessageFor(m => m.JobTitle)
+                                <br />
+                                <br />
+                                Group:  @Html.EditorFor(m => m.ContactGroupId) @Html.ValidationMessageFor(m => m.ContactGroupId)
                                 <br />
                                 <br />
                                 Email:  @Html.EditorFor(m => m.Email)
