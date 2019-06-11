@@ -110,6 +110,14 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
+        [HttpPost]
+        public ActionResult EditContact([Bind(Include="")]Contact contact)
+        {
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Where(m => m.ContactId == 1).SingleOrDefault();
+            return View(contacts);
+        }
+
         //Delete Specific Contact
         [HttpGet]
         public ActionResult Delete(int? ContactId)
