@@ -101,6 +101,15 @@ namespace ethko.Controllers
             return View(contacts);
         }
 
+        //Edit Specific Contact
+        [HttpGet]
+        public ActionResult EditContact(int? ContactId)
+        {
+            Entities entities = new Entities();
+            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
+            return View(contacts);
+        }
+
         //Delete Specific Contact
         [HttpGet]
         public ActionResult Delete(int? ContactId)
