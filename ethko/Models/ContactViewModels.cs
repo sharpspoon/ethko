@@ -214,6 +214,9 @@ namespace ethko.Models
 
         [Display(Name = "InsDate")]
         public string InsDate { get; set; }
+
+        [Display(Name = "contactGroupList")]
+        public string contactGroupList { get; set; }
     }
 
 

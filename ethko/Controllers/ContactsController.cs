@@ -96,9 +96,28 @@ namespace ethko.Controllers
         [HttpGet]
         public ActionResult ViewContact(int? ContactId)
         {
-            Entities entities = new Entities();
-            Contact contacts = entities.Contacts.Where(m => m.ContactId == ContactId).SingleOrDefault();
-            return View(contacts);
+            using (Entities entities = new Entities())
+            {
+                var contacts = (from c in entities.Contacts
+                               join cg in entities.ContactGroups on c.ContactGroupId equals cg.ContactGroupId
+                               join u in entities.AspNetUsers on c.UserId equals u.Id
+                               where c.ContactId == ContactId
+                               select new GetIndividualContactViewModel() { ContactId = c.ContactId
+                               , FName = c.FName
+                               , LName = c.LName
+                               , Email = c.Email
+                               , UserId = u.UserName
+                               , InsDate = c.InsDate.ToString()
+                               , contactGroupList = cg.ContactGroupName
+                               , CellPhone = c.CellPhone
+                               , Archived = c.Archived
+                               }).FirstOrDefault();
+
+
+                //IEnumerable<Contact> contacts = entities.Contacts.Where(m => m.Archived == 0).ToList();
+                //var contactModel = ConvertViewModelToModel(contacts);
+                return View(contacts);
+            }
         }
 
         //Edit Specific Contact
