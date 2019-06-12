@@ -154,8 +154,9 @@ namespace ethko.Controllers
             {
                 entities.Entry(contact).State = EntityState.Modified;
                 entities.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
+            
             //Contact contacts = entities.Contacts.Where(m => m.ContactId == 1).SingleOrDefault();
             return RedirectToAction("Index");
         }

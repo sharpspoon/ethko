@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ethko.Models.GetContactListViewModel>
 @{
-    ViewBag.Title = "Open Cases";
+    ViewBag.Title = "Closed Cases";
 }
 
 <br />
@@ -9,8 +9,8 @@
 <a class="btn btn-default" href='@Url.Action("CaseInsights", "Cases")'>Case Insights</a>&nbsp;
 <br />
 <br />
-<a class="btn btn-primary" href='@Url.Action("Index", "Cases")'>Open</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("Closed", "Cases")'>Closed</a>
+<a class="btn btn-default" href='@Url.Action("Index", "Cases")'>Open</a>&nbsp;
+<a class="btn btn-primary" href='@Url.Action("Closed", "Cases")'>Closed</a>
 <h2>
     @ViewBag.Title
     <a class="btn btn-success" href='@Url.Action("New", "Contacts")' style="float: right">+ Add Case</a>
@@ -106,35 +106,35 @@
                     }
                     @if (Model == null)
                     {
-                    <tr>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                        <td>
-                            NULL
-                        </td>
-                    </tr>
+                            <tr>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                                <td>
+                                    NULL
+                                </td>
+                            </tr>
                     }
 
                 </tbody>
