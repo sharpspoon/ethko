@@ -218,8 +218,4 @@ namespace ethko.Models
         [Display(Name = "contactGroupList")]
         public string contactGroupList { get; set; }
     }
-
-
-
-
 }

@@ -17,7 +17,7 @@
 
 
 
-@using (Html.BeginForm("ViewContact", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditContact", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -32,7 +32,7 @@
     <body style="margin:20px auto">
         <div class="col-md-2">
             <div class="well">
-                <a class="btn btn-success" href='@Url.Action("ViewContact", "Contacts")'>Save</a>
+                <input type="submit" class="btn btn-success" value="Save Contact"/>
             </div>
         </div>
         <div class="col-md-10">

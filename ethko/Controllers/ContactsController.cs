@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ethko.Controllers
 {
@@ -146,11 +147,17 @@ namespace ethko.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditContact([Bind(Include="")]Contact contact)
+        public ActionResult EditContact([Bind(Include="FName")]Contact contact)
         {
             Entities entities = new Entities();
-            Contact contacts = entities.Contacts.Where(m => m.ContactId == 1).SingleOrDefault();
-            return View(contacts);
+            if (ModelState.IsValid)
+            {
+                entities.Entry(contact).State = EntityState.Modified;
+                entities.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            //Contact contacts = entities.Contacts.Where(m => m.ContactId == 1).SingleOrDefault();
+            return RedirectToAction("Index");
         }
 
         //Delete Specific Contact
