@@ -104,12 +104,28 @@ namespace ethko.Controllers
                                where c.ContactId == ContactId
                                select new GetIndividualContactViewModel() { ContactId = c.ContactId
                                , FName = c.FName
+                               , MName = c.MName
                                , LName = c.LName
                                , Email = c.Email
+                               , EnableClientPortal = c.EnableClientPortal
                                , UserId = u.UserName
                                , InsDate = c.InsDate.ToString()
                                , contactGroupList = cg.ContactGroupName
                                , CellPhone = c.CellPhone
+                               , WorkPhone = c.WorkPhone
+                               , HomePhone = c.HomePhone
+                               , Fax = c.Fax
+                               , JobTitle = c.JobTitle
+                               , Birthday = c.Birthday
+                               , License = c.License
+                               , Website = c.Website
+                               , Notes = c.Notes
+                               , Address = c.Address
+                               , Address2 = c.Address2
+                               , City = c.City
+                               , State = c.State
+                               , Zip = c.Zip
+                               , Country = c.Country
                                , Archived = c.Archived
                                }).FirstOrDefault();
 

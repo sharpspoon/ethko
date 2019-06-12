@@ -156,7 +156,7 @@ namespace ethko.Models
         public string Email { get; set; }
 
         [Display(Name = "Client Portal")]
-        public string EnableClientPortal { get; set; }
+        public short EnableClientPortal { get; set; }
 
         [Display(Name = "Contact Group")]
         public string ContactGroupId { get; set; }
@@ -177,7 +177,7 @@ namespace ethko.Models
         public string JobTitle { get; set; }
 
         [Display(Name = "Birthday")]
-        public string Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         [Display(Name = "License")]
         public string License { get; set; }
