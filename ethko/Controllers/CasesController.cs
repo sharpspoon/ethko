@@ -32,5 +32,10 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public ActionResult New()
+        {
+            return View();
+        }
     }
 }
