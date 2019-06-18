@@ -18,7 +18,7 @@
 
     <p>
         <div class="col-md-12">
-            @using (Html.BeginForm("New", "Contacts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("New", "Cases", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -31,10 +31,7 @@
                         @Html.TextBoxFor(m => m.FName, new { @class = "form-control", placeholder = "First Name" })
                     </div>
                     <div class="col-md-2" align="left">
-                        @Html.TextBoxFor(m => m.MName, new { @class = "form-control", placeholder = "M" })
-                    </div>
-                    <div class="col-md-4" align="left">
-                        @Html.TextBoxFor(m => m.LName, new { @class = "form-control", placeholder = "Last Name" })
+                        <a class="btn btn-default" href='@Url.Action("New", "Contacts")'>Add Contact</a>
                     </div>
                 </div>
 

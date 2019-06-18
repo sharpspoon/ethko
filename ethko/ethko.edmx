@@ -67,6 +67,44 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="BillingMethods">
+          <Key>
+            <PropertyRef Name="BillingMethodId" />
+          </Key>
+          <Property Name="BillingMethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingMethodName" Type="varchar(max)" Nullable="false" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="CaseName" Type="varchar(max)" Nullable="false" />
+          <Property Name="CaseNumber" Type="varchar(max)" Nullable="false" />
+          <Property Name="PracticeAreaId" Type="int" Nullable="false" />
+          <Property Name="BillingMethodId" Type="int" Nullable="false" />
+          <Property Name="OfficeId" Type="int" Nullable="false" />
+          <Property Name="CaseStageId" Type="int" Nullable="false" />
+          <Property Name="DateOpened" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseStages">
+          <Key>
+            <PropertyRef Name="CaseStageId" />
+          </Key>
+          <Property Name="CaseStageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseStageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="CompanyId" />
@@ -131,6 +169,98 @@
           <Property Name="Birthday" Type="date" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Offices">
+          <Key>
+            <PropertyRef Name="OfficeId" />
+          </Key>
+          <Property Name="OfficeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeName" Type="varchar(max)" Nullable="false" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PracticeAreas">
+          <Key>
+            <PropertyRef Name="PracticeAreaId" />
+          </Key>
+          <Property Name="PracticeAreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PracticeAreaName" Type="varchar(max)" Nullable="false" />
+          <Property Name="FstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="InsDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cases_ToAspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="FstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToBillingMethods">
+          <End Role="BillingMethods" Type="Self.BillingMethods" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingMethods">
+              <PropertyRef Name="BillingMethodId" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="BillingMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToCaseStages">
+          <End Role="CaseStages" Type="Self.CaseStages" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseStages">
+              <PropertyRef Name="CaseStageId" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="CaseStageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToContacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToOffices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToPracticeAreas">
+          <End Role="PracticeAreas" Type="Self.PracticeAreas" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PracticeAreas">
+              <PropertyRef Name="PracticeAreaId" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="PracticeAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Companies_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
@@ -254,9 +384,38 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingMethods" EntityType="Self.BillingMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseStages" EntityType="Self.CaseStages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactGroups" EntityType="Self.ContactGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PracticeAreas" EntityType="Self.PracticeAreas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cases_ToAspNetUsers" Association="Self.FK_Cases_ToAspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToBillingMethods" Association="Self.FK_Cases_ToBillingMethods">
+            <End Role="BillingMethods" EntitySet="BillingMethods" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToCaseStages" Association="Self.FK_Cases_ToCaseStages">
+            <End Role="CaseStages" EntitySet="CaseStages" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToContacts" Association="Self.FK_Cases_ToContacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToOffices" Association="Self.FK_Cases_ToOffices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToPracticeAreas" Association="Self.FK_Cases_ToPracticeAreas">
+            <End Role="PracticeAreas" EntitySet="PracticeAreas" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
           <AssociationSet Name="FK_Companies_AspNetUsers" Association="Self.FK_Companies_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Companies" EntitySet="Companies" />
@@ -360,6 +519,7 @@
           <NavigationProperty Name="ContactGroups" Relationship="Model.FK_ContactGroups_AspNetUsers" FromRole="AspNetUser" ToRole="ContactGroup" />
           <NavigationProperty Name="Contacts" Relationship="Model.FK_Table_ToTable" FromRole="AspNetUser" ToRole="Contact" />
           <NavigationProperty Name="Companies" Relationship="Model.FK_Companies_AspNetUsers" FromRole="AspNetUser" ToRole="Company" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToAspNetUsers" FromRole="AspNetUser" ToRole="Case" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -434,6 +594,35 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Contact" EntitySet="Contacts" />
           </AssociationSet>
+          <EntitySet Name="BillingMethods" EntityType="Model.BillingMethod" />
+          <EntitySet Name="Cases" EntityType="Model.Case" />
+          <EntitySet Name="CaseStages" EntityType="Model.CaseStage" />
+          <EntitySet Name="Offices" EntityType="Model.Office" />
+          <EntitySet Name="PracticeAreas" EntityType="Model.PracticeArea" />
+          <AssociationSet Name="FK_Cases_ToAspNetUsers" Association="Model.FK_Cases_ToAspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToCaseStages" Association="Model.FK_Cases_ToCaseStages">
+            <End Role="CaseStage" EntitySet="CaseStages" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToContacts" Association="Model.FK_Cases_ToContacts">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToPracticeAreas" Association="Model.FK_Cases_ToPracticeAreas">
+            <End Role="PracticeArea" EntitySet="PracticeAreas" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToBillingMethods" Association="Model.FK_Cases_ToBillingMethods">
+            <End Role="BillingMethod" EntitySet="BillingMethods" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_ToOffices" Association="Model.FK_Cases_ToOffices">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ContactGroup">
           <Key>
@@ -494,6 +683,7 @@
           <Property Name="Birthday" Type="DateTime" Precision="0" />
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="License" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToContacts" FromRole="Contact" ToRole="Case" />
         </EntityType>
         <Association Name="FK_Table_ToTable">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -563,6 +753,146 @@
             </Principal>
             <Dependent Role="Contact">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BillingMethod">
+          <Key>
+            <PropertyRef Name="BillingMethodId" />
+          </Key>
+          <Property Name="BillingMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingMethodName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToBillingMethods" FromRole="BillingMethod" ToRole="Case" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="CaseName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CaseNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PracticeAreaId" Type="Int32" Nullable="false" />
+          <Property Name="CaseStageId" Type="Int32" Nullable="false" />
+          <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Cases_ToAspNetUsers" FromRole="Case" ToRole="AspNetUser" />
+          <NavigationProperty Name="CaseStage" Relationship="Model.FK_Cases_ToCaseStages" FromRole="Case" ToRole="CaseStage" />
+          <NavigationProperty Name="Contact" Relationship="Model.FK_Cases_ToContacts" FromRole="Case" ToRole="Contact" />
+          <NavigationProperty Name="PracticeArea" Relationship="Model.FK_Cases_ToPracticeAreas" FromRole="Case" ToRole="PracticeArea" />
+          <Property Name="BillingMethodId" Type="Int32" Nullable="false" />
+          <Property Name="OfficeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BillingMethod" Relationship="Model.FK_Cases_ToBillingMethods" FromRole="Case" ToRole="BillingMethod" />
+          <NavigationProperty Name="Office" Relationship="Model.FK_Cases_ToOffices" FromRole="Case" ToRole="Office" />
+        </EntityType>
+        <EntityType Name="CaseStage">
+          <Key>
+            <PropertyRef Name="CaseStageId" />
+          </Key>
+          <Property Name="CaseStageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseStageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToCaseStages" FromRole="CaseStage" ToRole="Case" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="OfficeId" />
+          </Key>
+          <Property Name="OfficeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToOffices" FromRole="Office" ToRole="Case" />
+        </EntityType>
+        <EntityType Name="PracticeArea">
+          <Key>
+            <PropertyRef Name="PracticeAreaId" />
+          </Key>
+          <Property Name="PracticeAreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PracticeAreaName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FstUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InsDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Cases" Relationship="Model.FK_Cases_ToPracticeAreas" FromRole="PracticeArea" ToRole="Case" />
+        </EntityType>
+        <Association Name="FK_Cases_ToAspNetUsers">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="FstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToCaseStages">
+          <End Type="Model.CaseStage" Role="CaseStage" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseStage">
+              <PropertyRef Name="CaseStageId" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="CaseStageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToContacts">
+          <End Type="Model.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToPracticeAreas">
+          <End Type="Model.PracticeArea" Role="PracticeArea" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PracticeArea">
+              <PropertyRef Name="PracticeAreaId" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="PracticeAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToBillingMethods">
+          <End Type="Model.BillingMethod" Role="BillingMethod" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingMethod">
+              <PropertyRef Name="BillingMethodId" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="BillingMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_ToOffices">
+          <End Type="Model.Office" Role="Office" Multiplicity="1" />
+          <End Type="Model.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="OfficeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -700,6 +1030,69 @@
                 <ScalarProperty Name="InsDate" ColumnName="InsDate" />
                 <ScalarProperty Name="FstUser" ColumnName="FstUser" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingMethods">
+            <EntityTypeMapping TypeName="Model.BillingMethod">
+              <MappingFragment StoreEntitySet="BillingMethods">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="BillingMethodName" ColumnName="BillingMethodName" />
+                <ScalarProperty Name="BillingMethodId" ColumnName="BillingMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="Model.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="BillingMethodId" ColumnName="BillingMethodId" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
+                <ScalarProperty Name="CaseStageId" ColumnName="CaseStageId" />
+                <ScalarProperty Name="PracticeAreaId" ColumnName="PracticeAreaId" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="CaseName" ColumnName="CaseName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseStages">
+            <EntityTypeMapping TypeName="Model.CaseStage">
+              <MappingFragment StoreEntitySet="CaseStages">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="CaseStageName" ColumnName="CaseStageName" />
+                <ScalarProperty Name="CaseStageId" ColumnName="CaseStageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offices">
+            <EntityTypeMapping TypeName="Model.Office">
+              <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PracticeAreas">
+            <EntityTypeMapping TypeName="Model.PracticeArea">
+              <MappingFragment StoreEntitySet="PracticeAreas">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="InsDate" ColumnName="InsDate" />
+                <ScalarProperty Name="FstUser" ColumnName="FstUser" />
+                <ScalarProperty Name="PracticeAreaName" ColumnName="PracticeAreaName" />
+                <ScalarProperty Name="PracticeAreaId" ColumnName="PracticeAreaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
