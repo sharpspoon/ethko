@@ -128,10 +128,10 @@ namespace ethko.Models
         public string InsDate { get; set; }
         [Display(Name = "UserId")]
         public string UserId { get; set; }
-        [Display(Name = "contactGroupList")]
-        public string contactGroupList { get; set; }
-        public Contact contact { get; set; }
-        public ContactGroup contactGroup { get; set; }
+        [Display(Name = "ContactGroupList")]
+        public string ContactGroupList { get; set; }
+        public Contact Contact { get; set; }
+        public ContactGroup ContactGroup { get; set; }
     }
 
     public class GetIndividualContactViewModel
@@ -216,6 +216,6 @@ namespace ethko.Models
         public string InsDate { get; set; }
 
         [Display(Name = "contactGroupList")]
-        public string contactGroupList { get; set; }
+        public string ContactGroupList { get; set; }
     }
 }
