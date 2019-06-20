@@ -42,5 +42,29 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public PracticeArea ConvertViewModelToModel(AddPracticeAreaViewModel vm)
+        {
+            return new PracticeArea()
+            {
+                PracticeAreaName = vm.PracticeAreaName
+            };
+        }
+
+        [HttpPost]
+        public ActionResult NewPracticeArea(AddPracticeAreaViewModel model)
+        {
+            var user = User.Identity.GetUserName().ToString();
+            var practiceAreaModel = ConvertViewModelToModel(model);
+
+            using (Entities entities = new Entities())
+            {
+                entities.PracticeAreas.Add(practiceAreaModel);
+                practiceAreaModel.InsDate = DateTime.Now;
+                practiceAreaModel.FstUser = entities.AspNetUsers.Where(m => m.Email == user).Select(m => m.Id).First();
+                entities.SaveChanges();
+            }
+            return RedirectToAction("PracticeAreas");
+        }
     }
 }
