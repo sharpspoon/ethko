@@ -80,7 +80,6 @@ namespace ethko.Controllers
                 //var contactModel = ConvertViewModelToModel(contacts);
                 return View(contacts.ToList());
             }
-
         }
 
         //View Archive List

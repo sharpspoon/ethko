@@ -18,9 +18,15 @@ namespace ethko.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult PracticeAreas()
         {
-            return View();
+            using (Entities entities = new Entities())
+            {
+                var practiceAreas = from p in entities.PracticeAreas
+                                    select new GetPracticeAreasViewModel() { PracticeAreaId = p.PracticeAreaId.ToString(), PracticeAreaName = p.PracticeAreaName, InsDate = p.InsDate.ToString(), UserId = p.FstUser };
+                return View(practiceAreas.ToList());
+            }
         }
 
         public ActionResult CaseInsights()
