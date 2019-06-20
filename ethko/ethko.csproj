@@ -255,6 +255,15 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>ethko.tt</DependentUpon>
     </Compile>
+    <Compile Include="BillingMethod.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Case.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CaseStage.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
     <Compile Include="Company.cs">
       <DependentUpon>ethko.tt</DependentUpon>
     </Compile>
@@ -305,6 +314,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Office.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PracticeArea.cs">
+      <DependentUpon>ethko.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -466,6 +481,8 @@
     <Content Include="Views\Cases\Closed.cshtml" />
     <Content Include="Views\Cases\New.cshtml" />
     <Content Include="Views\Cases\_AddCase.cshtml" />
+    <Content Include="Views\Cases\NewPracticeArea.cshtml" />
+    <Content Include="Views\Cases\_AddPracticeArea.cshtml" />
     <None Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\New.cshtml" />
     <Content Include="Views\Contacts\NewGroup.cshtml" />

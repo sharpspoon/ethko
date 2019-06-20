@@ -14,6 +14,12 @@ namespace ethko
     
     public partial class Contact
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Contact()
+        {
+            this.Cases = new HashSet<Case>();
+        }
+    
         public int ContactId { get; set; }
         public string UserId { get; set; }
         public System.DateTime InsDate { get; set; }
@@ -47,5 +53,7 @@ namespace ethko
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual ContactGroup ContactGroup { get; set; }
         public virtual Company Company { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Cases { get; set; }
     }
 }

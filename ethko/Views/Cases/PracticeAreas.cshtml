@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ethko.Models.GetContactListViewModel>
+﻿@model IEnumerable<ethko.Models.GetPracticeAreasViewModel>
 @{
     ViewBag.Title = "Practice Areas";
 }
@@ -11,7 +11,7 @@
 <br />
 <h2>
     @ViewBag.Title
-    <a class="btn btn-success" href='@Url.Action("New", "Contacts")' style="float: right">+ Add Practice Area</a>
+    <a class="btn btn-success" href='@Url.Action("NewPracticeArea", "Cases")' style="float: right">+ Add Practice Area</a>
 </h2>
 
 
@@ -58,22 +58,10 @@
                         {
                             <tr>
                                 <td>
-                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.FName)</a>
+                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.PracticeAreaId})'>@Html.DisplayFor(modelItem => item.PracticeAreaName)</a>
                                 </td>
                                 <td>
-                                    <a href='@Url.Action("ViewContact", "Contacts", new { ContactId = item.ContactId})'>@Html.DisplayFor(modelItem => item.LName)</a>
-
-                                </td>
-                                <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.ContactGroupList)</a>
-
-                                </td>
-                                <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
-
-                                </td>
-                                <td>
-                                    <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.Email)</a>
+                                    <a href='@Url.Action("ContactGroups", "Contacts")'>5</a>
 
                                 </td>
                                 <td>
@@ -83,7 +71,7 @@
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href='@Url.Action("EditContact", "Contacts", new { ContactId = item.ContactId })' rel="modal:open" style="float: right">Edit Contact</a>
+                                    <a class="btn btn-primary" href='@Url.Action("EditContact", "Cases", new { ContactId = item.PracticeAreaId })' rel="modal:open" style="float: right">Edit</a>
 
                                 </td>
                             </tr>
@@ -92,15 +80,6 @@
                     @if (Model == null)
                     {
                         <tr>
-                            <td>
-                                NULL
-                            </td>
-                            <td>
-                                NULL
-                            </td>
-                            <td>
-                                NULL
-                            </td>
                             <td>
                                 NULL
                             </td>

@@ -1,4 +1,4 @@
-﻿@model ethko.Models.AddContactIndividualViewModel
+﻿@model ethko.Models.AddCaseViewModel
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../Scripts/bootstrap-3.4.0.min.css">
@@ -28,7 +28,7 @@
                         Name
                     </div>
                     <div class="col-md-4" align="left">
-                        @Html.TextBoxFor(m => m.FName, new { @class = "form-control", placeholder = "First Name" })
+                        @Html.TextBoxFor(m => m.CaseContact, new { @class = "form-control", placeholder = "Search for an existing contact or company" })
                     </div>
                     <div class="col-md-2" align="left">
                         <a class="btn btn-default" href='@Url.Action("New", "Contacts")'>Add Contact</a>
@@ -40,7 +40,7 @@
                         Email
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@ethko.com" })
+                        @Html.TextBoxFor(m => m.CaseName, new { @class = "form-control", placeholder = "e.g. John Doe - Divorce" })
                     </div>
                 </div>
 
@@ -67,16 +67,20 @@
                         Cell Phone
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control", placeholder = "555-555-5555" })
+                        @Html.TextBoxFor(m => m.CaseNumber, new { @class = "form-control", placeholder = "555-555-5555" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-2" align="left">
-                        Work Phone
+                        Practice Area
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.WorkPhone, new { @class = "form-control", placeholder = "555-555-5555" })
+                        @Html.TextBoxFor(m => m.PracticeArea, new { @class = "form-control", placeholder = "" })
+                        @Html.ActionLink("Add new practice area", "SetPassword")
+                    </div>
+                    <div class="col-md-2" align="left">
+                        
                     </div>
                 </div>
 
@@ -85,7 +89,7 @@
                         Home Phone
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control", placeholder = "555-555-5555" })
+                        @Html.TextBoxFor(m => m.CaseStage, new { @class = "form-control", placeholder = "555-555-5555" })
                     </div>
                 </div>
 
@@ -94,7 +98,7 @@
                         Address
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "123 Main Street" })
+                        @Html.TextBoxFor(m => m.DateOpened, new { @class = "form-control", placeholder = "123 Main Street" })
                     </div>
                 </div>
 
@@ -103,7 +107,7 @@
                         Address 2
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", placeholder = "Apartment B" })
+                        @Html.TextBoxFor(m => m.Office, new { @class = "form-control", placeholder = "Apartment B" })
                     </div>
                 </div>
 
@@ -112,7 +116,7 @@
                         City
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Birmingham" })
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", placeholder = "Birmingham" })
                     </div>
                 </div>
 
@@ -121,25 +125,7 @@
                         State
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "AL" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-2" align="left">
-                        Zip
-                    </div>
-                    <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control", placeholder = "55555" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-2" align="left">
-                        Country
-                    </div>
-                    <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "USA" })
+                        @Html.TextBoxFor(m => m.Statute, new { @class = "form-control", placeholder = "AL" })
                     </div>
                 </div>
                 <div class="form-group">

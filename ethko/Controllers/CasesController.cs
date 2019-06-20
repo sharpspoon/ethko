@@ -37,5 +37,10 @@ namespace ethko.Controllers
         {
             return View();
         }
+
+        public ActionResult NewPracticeArea()
+        {
+            return View();
+        }
     }
 }

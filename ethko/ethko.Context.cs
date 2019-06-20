@@ -33,5 +33,10 @@ namespace ethko
         public virtual DbSet<ContactGroup> ContactGroups { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<BillingMethod> BillingMethods { get; set; }
+        public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<CaseStage> CaseStages { get; set; }
+        public virtual DbSet<Office> Offices { get; set; }
+        public virtual DbSet<PracticeArea> PracticeAreas { get; set; }
     }
 }
