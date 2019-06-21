@@ -384,6 +384,11 @@ namespace ethko.Controllers
             Error
         }
 
+        public ActionResult CaseStages()
+        {
+            return View();
+        }
+
         #endregion
     }
 }

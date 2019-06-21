@@ -1,23 +1,21 @@
 ﻿@model IEnumerable<ethko.Models.GetPracticeAreasViewModel>
 @{
-    ViewBag.Title = "Practice Areas";
+    ViewBag.Title = "Case Stages";
 }
 
 <br />
-<a class="btn btn-default" href='@Url.Action("Index", "Cases")'>Cases</a>&nbsp;
-<a class="btn btn-primary" href='@Url.Action("PracticeAreas", "Cases")'>Practice Areas</a>&nbsp;
-<a class="btn btn-default" href='@Url.Action("CaseInsights", "Cases")'>Case Insights</a>&nbsp;
+<a class="btn btn-default" href='@Url.Action("Index", "Manage")'>Back to Settings</a>&nbsp;
 <br />
 <br />
 <h2>
     @ViewBag.Title
-    <a class="btn btn-success" href='@Url.Action("NewPracticeArea", "Cases")' style="float: right">+ Add Practice Area</a>
+    <a class="btn btn-success" href='@Url.Action("NewCaseStage", "Manage")' style="float: right">+ Add Case Stage</a>
 </h2>
 
 
 
 
-@using (Html.BeginForm("Index", "Contacts", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("CaseStages", "Manage", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -36,8 +34,7 @@
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Practice Area</th>
-                        <th>Active Cases</th>
+                        <th>Case Stages</th>
                         <th>Added</th>
                         <th>Edit / Delete</th>
                     </tr>
@@ -69,9 +66,6 @@
                     @if (Model == null)
                     {
                         <tr>
-                            <td>
-                                NULL
-                            </td>
                             <td>
                                 NULL
                             </td>
