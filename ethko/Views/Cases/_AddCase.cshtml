@@ -1,10 +1,4 @@
 ﻿@model ethko.Models.AddCaseViewModel
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../Scripts/bootstrap-3.4.0.min.css">
-    <script src="../Scripts/jquery-3.4.0.min.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
-</head>
 <br />
 <a class="btn btn-default" href='@Url.Action("Index", "Cases")'>Cases</a>&nbsp;
 <a class="btn btn-default" href='@Url.Action("PracticeAreas", "Cases")'>Practice Areas</a>&nbsp;
@@ -83,7 +77,16 @@
                         Date Opened
                     </div>
                     <div class="col-md-10" align="left">
-                        @Html.TextBoxFor(m => m.CaseStage, new { @class = "form-control", placeholder = "555-555-5555" })
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <input type='text' class="form-control" id='datetimepicker4' />
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker4').datetimepicker();
+                                    });
+                                </script>
+                            </div>
                     </div>
                 </div>
 
