@@ -20,6 +20,9 @@ namespace ethko.Models
         [Display(Name = "Practice Area")]
         public string PracticeArea { get; set; }
 
+        [Display(Name = "Practice Area Id")]
+        public string PracticeAreaId { get; set; }
+
         [Display(Name = "Case Stage")]
         public string CaseStage { get; set; }
 
