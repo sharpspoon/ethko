@@ -13,6 +13,7 @@ namespace ethko.Controllers
     [Authorize]
     public class CasesController : Controller
     {
+        Entities entities = new Entities();
         public ActionResult Index()
         {
             return View();
@@ -46,6 +47,29 @@ namespace ethko.Controllers
 
         public ActionResult NewPracticeArea()
         {
+            return View();
+        }
+
+        public ActionResult DeletePracticeArea(int? PracticeAreaId)
+        {
+            if (PracticeAreaId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Entities entities = new Entities();
+            PracticeArea practiceAreas = entities.PracticeAreas.Where(m => m.PracticeAreaId == PracticeAreaId).Single();
+            return View(practiceAreas);
+        }
+
+        public ActionResult DeleteConfirmed(int? PracticeAreaId)
+        {
+            if (PracticeAreaId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PracticeArea practiceAreas = entities.PracticeAreas.Find(PracticeAreaId);
+            entities.PracticeAreas.Remove(practiceAreas);
+            entities.SaveChanges();
             return View();
         }
 

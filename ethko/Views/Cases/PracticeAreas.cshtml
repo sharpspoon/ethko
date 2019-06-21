@@ -33,22 +33,13 @@
     <body style="margin:20px auto">
         <div class="container">
             <br />
-            Select Group
-            <select id='filterText' style='display:inline-block' onchange='filterText()'>
-                <option disabled selected>Select</option>
-                <option value='yes'>Yes</option>
-                <option value='no'>No</option>
-                <option value='all'>All</option>
-            </select>
-            <br />
-            <br />
             <table id="myTable" class="table table-hover">
                 <thead>
                     <tr>
                         <th>Practice Area</th>
                         <th>Active Cases</th>
                         <th>Added</th>
-                        <th>Edit</th>
+                        <th>Edit / Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,12 +58,10 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.InsDate)
                                     by <a href='@Url.Action("ContactGroups", "Contacts")'>@Html.DisplayFor(modelItem => item.UserId)</a>
-
-
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href='@Url.Action("EditContact", "Cases", new { ContactId = item.PracticeAreaId })' rel="modal:open" style="float: right">Edit</a>
-
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href='@Url.Action("EditPracticeArea", "Cases", new { PracticeAreaId = item.PracticeAreaId })'>Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href='@Url.Action("DeletePracticeArea", "Cases", new { PracticeAreaId = item.PracticeAreaId })'>Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 </td>
                             </tr>
                         }
